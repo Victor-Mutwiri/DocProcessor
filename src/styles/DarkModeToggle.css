@@ -1,0 +1,63 @@
+@import './theme.css';
+@import './utilities.css';
+
+.dark-mode-toggle {
+    position: relative;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-full);
+    background-color: var(--bg-gray-50);
+    box-shadow: var(--shadow-md);
+    font-size: 1.25rem;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    outline: 2px solid red;
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.dark-mode-toggle:hover {
+    transform: scale(1.05);
+    background-color: var(--bg-gray-100);
+}
+
+.dark-mode-toggle-icon {
+    font-size: 1.25rem;
+    display: inline-block;
+}
+
+.dark-mode-toggle-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    display: inline-block;
+    min-width: 80px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .dark-mode-toggle {
+        background-color: var(--dark-bg-secondary);
+        border-color: var(--dark-border-color);
+    }
+
+    .dark-mode-toggle:hover {
+        background-color: var(--dark-bg-tertiary);
+    }
+
+    .dark-mode-toggle-label {
+        color: var(--dark-text-primary);
+    }
+}
+
+@media (max-width: 768px) {
+    .dark-mode-toggle {
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .dark-mode-toggle-label {
+        display: none;
+    }
+} 

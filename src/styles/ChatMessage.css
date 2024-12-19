@@ -1,0 +1,119 @@
+.message {
+    padding: var(--spacing-md);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-md);
+    max-width: 80%;
+    animation: messageSlide var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-fast);
+}
+
+.message:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.message-user {
+    background-color: var(--bg-gray-50);
+    margin-left: auto;
+    margin-right: var(--spacing-sm);
+}
+
+.message-ai {
+    background-color: var(--color-primary);
+    color: white;
+    margin-right: auto;
+    margin-left: var(--spacing-sm);
+}
+
+.message-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+}
+
+.message-sender {
+    font-weight: 600;
+}
+
+.message-time {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.message-content {
+    line-height: 1.5;
+}
+
+/* Highlighted terms */
+.legal-term {
+    background-color: rgba(59, 130, 246, 0.1);
+    padding: 0 var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    color: var(--color-primary);
+}
+
+.risk-highlight {
+    background-color: rgba(239, 68, 68, 0.1);
+    padding: 0 var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    color: var(--color-danger);
+}
+
+.clause-highlight {
+    background-color: rgba(16, 185, 129, 0.1);
+    padding: 0 var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    color: var(--color-success);
+}
+
+@keyframes messageSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} 
+
+@media (prefers-color-scheme: dark) {
+    .message-user {
+        background-color: var(--dark-bg-secondary);
+    }
+
+    .message-ai {
+        background-color: var(--color-primary-dark);
+    }
+
+    .message-time {
+        color: var(--dark-text-muted);
+    }
+
+    .legal-term {
+        background-color: rgba(59, 130, 246, 0.2);
+    }
+
+    .risk-highlight {
+        background-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .clause-highlight {
+        background-color: rgba(16, 185, 129, 0.2);
+    }
+}
+
+@media (max-width: 640px) {
+    .message {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .message {
+        max-width: 95%;
+        margin-left: var(--spacing-xs);
+        margin-right: var(--spacing-xs);
+    }
+} 

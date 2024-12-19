@@ -1,0 +1,51 @@
+.upload-container {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.upload-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.dropzone {
+    border: 2px dashed #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dropzone.active {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+}
+
+.dropzone.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.upload-icon {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto;
+    color: #9ca3af;
+}
+
+.upload-text {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: #4b5563;
+}
+
+.upload-hint {
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: #6b7280;
+} 

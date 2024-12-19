@@ -1,0 +1,105 @@
+.query-templates {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.template-button {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-full);
+    background-color: var(--bg-gray-50);
+    border: 1px solid var(--border-color);
+    color: var(--color-primary);
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.template-button:hover {
+    background-color: var(--bg-gray-100);
+    border-color: var(--color-primary);
+}
+
+.template-icon {
+    font-size: 1.25rem;
+}
+
+.template-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.template-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: var(--text-primary);
+    color: white;
+    font-size: 0.75rem;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-fast);
+}
+
+.template-button:hover .template-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+.template-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: var(--text-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+    .template-button {
+        background-color: var(--dark-bg-secondary);
+        border-color: var(--dark-border-color);
+    }
+
+    .template-button:hover {
+        background-color: var(--dark-bg-tertiary);
+        border-color: var(--color-primary);
+    }
+
+    .template-tooltip {
+        background-color: var(--dark-bg-tertiary);
+    }
+
+    .template-tooltip::after {
+        border-top-color: var(--dark-bg-tertiary);
+    }
+}
+
+@media (max-width: 640px) {
+    .query-templates {
+        justify-content: center;
+    }
+
+    .template-button {
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .template-label {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .template-icon {
+        font-size: 1rem;
+    }
+} 
