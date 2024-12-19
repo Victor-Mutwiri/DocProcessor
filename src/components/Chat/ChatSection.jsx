@@ -2,7 +2,7 @@ import { useState } from 'react'
 import QueryTemplates from './QueryTemplates'
 import ChatMessage from './ChatMessage'
 import '../../styles/ChatSection.css'
-import { API_BASE_URL } from '../config/config'
+import { API_BASE_URL } from '../../config/config'
 
 const ChatSection = () => {
     const [messages, setMessages] = useState([])

@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import ProgressBar from '../common/ProgressBar'
 import LoadingSpinner from '../common/LoadingSpinner'
 import '../../styles/FileUpload.css'
-import { API_BASE_URL } from '../config/config'
+import { API_BASE_URL } from '../../config/config'
 
 const FileUpload = () => {
     const [uploading, setUploading] = useState(false)

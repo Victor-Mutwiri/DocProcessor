@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import ComparisonModal from './ComparisonModal'
 import '../../styles/FileList.css'
-import { API_BASE_URL } from '../config/config'
+import { API_BASE_URL } from '../../config/config'
 
 const FileList = () => {
     const [files, setFiles] = useState([])

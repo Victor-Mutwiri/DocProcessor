@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import {API_BASE_URL} from '../config/config'
+import {API_BASE_URL} from '../../config/config'
 
 const DocumentSummary = () => {
     const [summary, setSummary] = useState('Select a document to view its summary')

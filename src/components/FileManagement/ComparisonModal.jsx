@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import LoadingSpinner from '../common/LoadingSpinner'
 import '../../styles/ComparisonModal.css'
-import { API_BASE_URL } from '../config/config'
+import { API_BASE_URL } from '../../config/config.js'
 
 const ComparisonModal = ({ file, onClose }) => {
     const [loading, setLoading] = useState(true)
