@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import ComparisonModal from './ComparisonModal'
 import '../../styles/FileList.css'
+import { API_BASE_URL } from '../config/config'
 
 const FileList = () => {
     const [files, setFiles] = useState([])
@@ -10,7 +11,7 @@ const FileList = () => {
     const handleDelete = async (filename) => {
         if (!confirm('Are you sure you want to delete this file?')) return
         try {
-            const response = await fetch(`/delete/${filename}`, {
+            const response = await fetch(`${API_BASE_URL}/api/delete/${filename}`, {
                 method: 'POST',
             })
             const data = await response.json()

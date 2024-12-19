@@ -2,6 +2,7 @@ import { useState } from 'react'
 import QueryTemplates from './QueryTemplates'
 import ChatMessage from './ChatMessage'
 import '../../styles/ChatSection.css'
+import { API_BASE_URL } from '../config/config'
 
 const ChatSection = () => {
     const [messages, setMessages] = useState([])
@@ -17,7 +18,7 @@ const ChatSection = () => {
         setInputMessage('')
 
         try {
-            const response = await fetch('/chat', {
+            const response = await fetch(`${API_BASE_URL}/api/chat`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

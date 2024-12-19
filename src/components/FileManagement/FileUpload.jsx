@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import ProgressBar from '../common/ProgressBar'
 import LoadingSpinner from '../common/LoadingSpinner'
 import '../../styles/FileUpload.css'
+import { API_BASE_URL } from '../config/config'
 
 const FileUpload = () => {
     const [uploading, setUploading] = useState(false)
@@ -44,7 +45,7 @@ const FileUpload = () => {
             setProgress(0)
             setStatus('Starting upload...')
 
-            const response = await fetch('/upload', {
+            const response = await fetch(`${API_BASE_URL}/api/upload`, {
                 method: 'POST',
                 body: formData,
                 onUploadProgress: (progressEvent) => {

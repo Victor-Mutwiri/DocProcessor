@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import LoadingSpinner from '../common/LoadingSpinner'
 import '../../styles/ComparisonModal.css'
+import { API_BASE_URL } from '../config/config'
 
 const ComparisonModal = ({ file, onClose }) => {
     const [loading, setLoading] = useState(true)
@@ -12,7 +13,7 @@ const ComparisonModal = ({ file, onClose }) => {
     useEffect(() => {
         const fetchFiles = async () => {
             try {
-                const response = await fetch('/files')
+                const response = await fetch(`${API_BASE_URL}/api/files`)
                 const data = await response.json()
                 setFiles(data.files.filter(f => f.filename !== file.filename))
             } catch (error) {
