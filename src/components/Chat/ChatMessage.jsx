@@ -35,9 +35,9 @@ const ChatMessage = ({ message }) => {
         >
             <div className="message-header">
                 <span className="message-sender">{sender}</span>
-                <span className="message-time">
+                {/* <span className="message-time">
                     {new Date().toLocaleTimeString()}
-                </span>
+                </span> */}
             </div>
             <div 
                 className="message-content"

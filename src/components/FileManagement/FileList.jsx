@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ComparisonModal from './ComparisonModal'
 import '../../styles/FileList.css'
 import { API_BASE_URL } from '../../config/config'
@@ -7,6 +7,20 @@ const FileList = () => {
     const [files, setFiles] = useState([])
     const [showModal, setShowModal] = useState(false)
     const [selectedFile, setSelectedFile] = useState(null)
+
+    useEffect(() => {
+        const fetchFiles = async () => {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/files`)
+                const data = await response.json()
+                setFiles(data.files)
+            } catch (error) {
+                console.error('Error fetching files:', error)
+            }
+        }
+
+        fetchFiles()
+    }, [])
 
     const handleDelete = async (filename) => {
         if (!confirm('Are you sure you want to delete this file?')) return
@@ -75,4 +89,4 @@ const FileList = () => {
     )
 }
 
-export default FileList 
+export default FileList

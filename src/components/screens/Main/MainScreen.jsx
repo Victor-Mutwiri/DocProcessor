@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useAuth } from '@clerk/clerk-react'
 import { useNavigate } from 'react-router-dom'
+import Signout from '../../components/Signout/Signout'
 import DocumentAnalysis from '../../components/DocumentAnalysis/DocumentAnalysis'
 import FileManagement from '../../components/FileManagement/FileList'
 import FileUpload from '../../components/FileManagement/FileUpload'
@@ -26,12 +27,18 @@ const MainScreen = () => {
         <div className="main-container">
             <div className="main-header">
                 <h1 className="main-title">Legal Document Assistant</h1>
-                <DarkModeToggle />
+                <div>
+                    <DarkModeToggle />
+                    <Signout />
+                </div>
+                
             </div>
             <div className="main-content">
                 <DocumentAnalysis />
-                <FileManagement />
-                <FileUpload />
+                <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
+                    <FileManagement />
+                    <FileUpload />
+                </div>
                 <ChatSection />
             </div>
         </div>

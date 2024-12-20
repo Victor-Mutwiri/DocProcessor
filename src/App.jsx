@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { SignIn, SignUp } from '@clerk/clerk-react'
 import Home from './screens/Home/Home'
 import MainScreen from './screens/Main/MainScreen'
+/* import MainScreen from './components/screens/Main/MainScreen' */
+
 
 function App() {
   return (

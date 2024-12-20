@@ -28,9 +28,9 @@ const DarkModeToggle = () => {
             <span className="dark-mode-toggle-icon">
                 {isDark ? '🌞' : '🌙'}
             </span>
-            <span className="dark-mode-toggle-label">
+            {/* <span className="dark-mode-toggle-label">
                 {isDark ? 'Light Mode' : 'Dark Mode'}
-            </span>
+            </span> */}
         </button>
     )
 }

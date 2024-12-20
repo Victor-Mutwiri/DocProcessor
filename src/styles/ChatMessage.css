@@ -20,7 +20,9 @@
 
 .message-ai {
     background-color: var(--color-primary);
-    color: white;
+    /* background-color: var(--color-primary); */
+    color: black;
+    /* color: white; */
     margin-right: auto;
     margin-left: var(--spacing-sm);
 }

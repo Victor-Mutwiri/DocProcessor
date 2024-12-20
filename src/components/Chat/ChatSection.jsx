@@ -31,7 +31,7 @@ const ChatSection = () => {
             const data = await response.json()
             
             setMessages(prev => [...prev, {
-                sender: 'AI',
+                sender: 'Juri',
                 content: data.response || data.error
             }])
         } catch (error) {
