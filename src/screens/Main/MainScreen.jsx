@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useAuth } from '@clerk/clerk-react'
 import { useNavigate } from 'react-router-dom'
+import './MainScreen.css'
 import DarkModeToggle from '../../components/common/DarkModeToggle'
 import Signout from '../../components/Signout/Signout'
 import DocumentAnalysis from '../../components/DocumentAnalysis/DocumentAnalysis'
@@ -19,7 +20,7 @@ const MainScreen = () => {
     }, [isSignedIn, isLoaded, navigate])
 
     if (!isLoaded || !isSignedIn) {
-        return <div>Loading...</div>
+        return <div style={{display:'flex', justifyContent:'center', alignSelf:'center', alignItems: 'center'}}>Loading...</div>
     }
 
     return (
@@ -35,7 +36,7 @@ const MainScreen = () => {
                 
             </div>
             <DocumentAnalysis />
-            <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem', marginBottom: '1rem' }}>
+            <div className='fileManagement' style={{ display: 'flex', flexDirection: 'row', gap: '1rem', justifyContent: 'center' }}>
                 <FileManagement />
                 <FileUpload />
             </div>

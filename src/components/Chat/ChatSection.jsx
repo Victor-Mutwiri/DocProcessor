@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import QueryTemplates from './QueryTemplates'
 import ChatMessage from './ChatMessage'
 import '../../styles/ChatSection.css'
@@ -8,6 +8,25 @@ const ChatSection = () => {
     const [messages, setMessages] = useState([])
     const [inputMessage, setInputMessage] = useState('')
     const [selectedDocument, setSelectedDocument] = useState('')
+    const [activeDocuments, setActiveDocuments] = useState([])
+
+    useEffect(() => {
+        const fetchActiveDocuments = async () => {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/files`);
+                const data = await response.json();
+
+                // Filter only active documents
+                /* const activeDocs = data.filter(doc => doc.active); */
+                setActiveDocuments(data);
+                /* setActiveDocuments(activeDocs); */
+            } catch (error) {
+                console.error('Error fetching active documents:', error);
+            }
+        };
+
+        fetchActiveDocuments();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -48,7 +67,10 @@ const ChatSection = () => {
                 onChange={(e) => setSelectedDocument(e.target.value)}
                 className="chat-select"
             >
-                <option value="">All Active Documents</option>
+                <option value="">Available Documents</option>
+                {activeDocuments.map((doc) => (
+                    <option key={doc.filepath} value={doc.filepath}>{doc.filename}</option>
+                ))}
             </select>
 
             <QueryTemplates onSelect={setInputMessage} />

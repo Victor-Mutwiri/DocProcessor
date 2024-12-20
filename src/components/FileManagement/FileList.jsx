@@ -1,41 +1,41 @@
-import { useState, useEffect } from 'react'
-import ComparisonModal from './ComparisonModal'
-import '../../styles/FileList.css'
-import { API_BASE_URL } from '../../config/config'
+import { useState, useEffect } from 'react';
+import ComparisonModal from './ComparisonModal';
+import '../../styles/FileList.css';
+import { API_BASE_URL } from '../../config/config';
 
 const FileList = () => {
-    const [files, setFiles] = useState([])
-    const [showModal, setShowModal] = useState(false)
-    const [selectedFile, setSelectedFile] = useState(null)
+    const [files, setFiles] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedFile, setSelectedFile] = useState(null);
 
     useEffect(() => {
         const fetchFiles = async () => {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/files`)
-                const data = await response.json()
-                setFiles(data.files)
+                const response = await fetch(`${API_BASE_URL}/api/files`);
+                const data = await response.json();
+                setFiles(data.files || []);
             } catch (error) {
-                console.error('Error fetching files:', error)
+                console.error('Error fetching files:', error);
             }
-        }
+        };
 
-        fetchFiles()
-    }, [])
+        fetchFiles();
+    }, []);
 
     const handleDelete = async (filename) => {
-        if (!confirm('Are you sure you want to delete this file?')) return
+        if (!confirm('Are you sure you want to delete this file?')) return;
         try {
             const response = await fetch(`${API_BASE_URL}/api/delete/${filename}`, {
                 method: 'POST',
-            })
-            const data = await response.json()
+            });
+            const data = await response.json();
             if (data.message) {
-                setFiles(files.filter(file => file.filename !== filename))
+                setFiles(files.filter(file => file.filename !== filename));
             }
         } catch (error) {
-            console.error('Error deleting file:', error)
+            console.error('Error deleting file:', error);
         }
-    }
+    };
 
     return (
         <div className="file-list-container">
@@ -61,8 +61,8 @@ const FileList = () => {
                             </button>
                             <button
                                 onClick={() => {
-                                    setSelectedFile(file)
-                                    setShowModal(true)
+                                    setSelectedFile(file);
+                                    setShowModal(true);
                                 }}
                                 className="btn-compare"
                             >
@@ -86,7 +86,7 @@ const FileList = () => {
                 />
             )}
         </div>
-    )
-}
+    );
+};
 
-export default FileList
+export default FileList;
