@@ -24,7 +24,8 @@ const MainScreen = () => {
     }
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="mainScreen">
+        {/* <div className="container mx-auto px-4 py-8"> */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h1 className="text-3xl font-bold mb-5 text-center">
                     Sheria Aide
@@ -35,12 +36,14 @@ const MainScreen = () => {
                 </div>
                 
             </div>
-            <DocumentAnalysis />
-            <div className='fileManagement' style={{ display: 'flex', flexDirection: 'row', gap: '1rem', justifyContent: 'center' }}>
-                <FileManagement />
-                <FileUpload />
+            {/* <DocumentAnalysis /> */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', gap: '1rem' }}>
+                <div className='fileManagement' style={{ display: 'flex', flexDirection: 'column', gap: '1rem', justifyContent: 'flex-start' }}>
+                    <FileManagement />
+                    <FileUpload />
+                </div>
+                <ChatSection />
             </div>
-            <ChatSection />
         </div>
     )
 }

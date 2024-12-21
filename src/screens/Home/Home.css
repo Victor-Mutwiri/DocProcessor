@@ -3,6 +3,12 @@
     max-width: 1200px;
     margin: 0 auto;
 }
+.landing-page h1 {
+    text-align: center;
+    align-items: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
 
 .hero-section {
     text-align: center;

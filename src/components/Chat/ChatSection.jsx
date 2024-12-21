@@ -8,25 +8,47 @@ const ChatSection = () => {
     const [messages, setMessages] = useState([])
     const [inputMessage, setInputMessage] = useState('')
     const [selectedDocument, setSelectedDocument] = useState('')
-    const [activeDocuments, setActiveDocuments] = useState([])
+    const [availableDocuments, setAvailableDocuments] = useState([])
 
     useEffect(() => {
-        const fetchActiveDocuments = async () => {
+        const fetchAvailableDocuments = async () => {
             try {
                 const response = await fetch(`${API_BASE_URL}/api/files`);
                 const data = await response.json();
 
-                // Filter only active documents
-                /* const activeDocs = data.filter(doc => doc.active); */
-                setActiveDocuments(data);
-                /* setActiveDocuments(activeDocs); */
+                setAvailableDocuments(data);
             } catch (error) {
-                console.error('Error fetching active documents:', error);
+                console.error('Error fetching available documents:', error);
             }
         };
 
-        fetchActiveDocuments();
+        fetchAvailableDocuments();
     }, []);
+
+    const handleSetActiveDocument = async (filename) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/set-active-document`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ filename }),
+            })
+            const data = await response.json()
+            if (data.message) {
+                setAvailableDocuments(prevDocuments =>
+                    prevDocuments.map(doc =>
+                        doc.filename === filename
+                            ? { ...doc, active: true }
+                            : { ...doc, active: false }
+                    )
+                )
+                setSelectedDocument(filename)
+            }
+        } catch (error) {
+            console.error('Error setting active document:', error)
+        }
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -64,12 +86,14 @@ const ChatSection = () => {
             
             <select
                 value={selectedDocument}
-                onChange={(e) => setSelectedDocument(e.target.value)}
+                onChange={(e) => handleSetActiveDocument(e.target.value)}
                 className="chat-select"
             >
-                <option value="">Available Documents</option>
-                {activeDocuments.map((doc) => (
-                    <option key={doc.filepath} value={doc.filepath}>{doc.filename}</option>
+                <option value="">All Active Documents</option>
+                {availableDocuments.map((doc) => (
+                    <option key={doc.filename} value={doc.filename}>
+                        {doc.filename} {doc.active ? '✔️' : ''}
+                    </option>
                 ))}
             </select>
 
