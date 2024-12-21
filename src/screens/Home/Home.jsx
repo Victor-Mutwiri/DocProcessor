@@ -20,31 +20,29 @@ const Home = () => {
     }
 
     return (
-        <div>
+        <div className="home">
             <Navbar />
             <div className="landing-page">
-                <h1>Welcome to Our Service</h1>
+                <h1>Chat with documents</h1>
                 <section className="hero-section">
-                    <h2>Your Amazing Service Title</h2>
-                    <p>Discover what makes our service unique and powerful</p>
+                    <h2>Dive into PDFs like never before with Sheria Aide</h2>
+                    <p>Stop wasting time searching through PDFs. Summarize long documents and simplify complex PDFs with Sheria Aide.
+                        <br /> Sheria Aide is a smart assistant that helps you get instant answers, highlights, <br/>explain complex concepts, and find key information in seconds.
+                    </p>
                     <button onClick={handleSignIn} className="sign-in-button">
                         Get Started
                     </button>
                 </section>
                 
                 <section className="features">
-                    <h2>Our Features</h2>
-                    {/* Add your features/services here */}
-                    <div className="feature-grid">
-                        <div className="feature">
-                            <h3>Feature 1</h3>
-                            <p>Description of feature 1</p>
+                    <h4>Used by over 100+ legal professionals</h4>
+                    <div className='formats'>
+                        <p>Supported formats: </p>
+                        <div className='format-icons'>
+                            <span className='file'>PDF</span>
+                            <span className='file'>DOCX</span>
+                            <span className='file'>DOC</span>
                         </div>
-                        <div className="feature">
-                            <h3>Feature 2</h3>
-                            <p>Description of feature 2</p>
-                        </div>
-                        {/* Add more features as needed */}
                     </div>
                 </section>
             </div>

@@ -1,18 +1,57 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(135deg, #131417, #1f1c2c, #3a1c71, #d76d77, #3faf7b); /* Beautiful gradient */
+    background-size: 400% 400%; /* Make it large for animation if needed */
+    animation: gradientBackground 15s ease infinite; /* Optional animation */
+    color: white;
+}
+
+@keyframes gradientBackground {
+    0% { background-position: 0% 20%; }
+    50% { background-position: 70% 30%; }
+    100% { background-position: 0% 30%; }
+}
+
 .landing-page {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0 2rem;
+    margin-top: 4.5rem;
 }
 .landing-page h1 {
     text-align: center;
     align-items: center;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 3.7rem;
+    margin-top: 1rem;
+    color: transparent; /* Make text color transparent to reveal gradient */
+    background: linear-gradient(white, rgba(255, 255, 255, 0)); /* Gradient from white to transparent */
+    -webkit-background-clip: text; /* Clipping the background to the text */
+    background-clip: text;
 }
 
 .hero-section {
     text-align: center;
     padding: 4rem 2rem;
+}
+
+.hero-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: transparent; /* Make text color transparent to reveal gradient */
+    background: linear-gradient(to right, white, rgba(255, 255, 255, 0)); /* Gradient from white to transparent */
+    -webkit-background-clip: text; /* Clipping the background to the text */
+    background-clip: text; /* Standard property for background clipping */
 }
 
 .sign-in-button {
@@ -31,19 +70,34 @@
 }
 
 .features {
-    padding: 4rem 0;
+    padding: 1rem 0;
 }
 
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+.features h4{
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+    color: white;
 }
 
-.feature {
-    padding: 1.5rem;
-    border-radius: 8px;
-    background-color: #f8f9fa;
-    text-align: center;
+.features .formats{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.formats p{
+    font-size: 1.4rem;
+}
+
+.formats .format-icons{
+    display: flex;
+    gap: 1rem;
+}
+
+.formats .file{
+    font-size: 1.1rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 30px;
+    border: gray 1px solid;
 }
