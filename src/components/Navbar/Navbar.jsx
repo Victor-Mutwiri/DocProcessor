@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '@clerk/clerk-react'
 import Logo from '../../assets/Sheria Aide.png'
 import './Navbar.css'
@@ -26,7 +26,7 @@ const Navbar = () => {
             <img src={Logo} className='logo'/>
             <h4>Sheria Aide</h4>
         </div>
-        <ul><li>Home</li></ul>
+        <Link to='/'>Home</Link>
         <button className='login-btn' onClick={handleSignIn}>Log in</button>
     </nav>
   )

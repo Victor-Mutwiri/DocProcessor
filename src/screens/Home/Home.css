@@ -101,3 +101,12 @@
     border-radius: 30px;
     border: gray 1px solid;
 }
+
+.product-image{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FBEDED;
+    padding-bottom: 3rem;
+}

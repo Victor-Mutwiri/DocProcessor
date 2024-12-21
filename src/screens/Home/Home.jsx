@@ -3,6 +3,7 @@ import { useAuth } from '@clerk/clerk-react'
 import { useEffect } from 'react'
 import './Home.css'
 import Navbar from '../../components/Navbar/Navbar'
+import ProductImage from '../../assets/Sheria.png'
 
 const Home = () => {
     const { isSignedIn } = useAuth()
@@ -29,9 +30,9 @@ const Home = () => {
                     <p>Stop wasting time searching through PDFs. Summarize long documents and simplify complex PDFs with Sheria Aide.
                         <br /> Sheria Aide is a smart assistant that helps you get instant answers, highlights, <br/>explain complex concepts, and find key information in seconds.
                     </p>
-                    <button onClick={handleSignIn} className="sign-in-button">
+                    {/* <button onClick={handleSignIn} className="sign-in-button">
                         Get Started
-                    </button>
+                    </button> */}
                 </section>
                 
                 <section className="features">
@@ -46,6 +47,16 @@ const Home = () => {
                     </div>
                 </section>
             </div>
+            <section className="product-image">
+                <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem', alignItems: 'center' }}>
+                    <img src={ProductImage} alt='Product' />
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
+                        <h4 style={{fontSize:'2.5rem', color:'black'}}>Built for Professionals</h4>
+                        <h5 style={{fontSize:'1.6rem', color:'black', fontStyle:'italic'}}>The right tools just for you...</h5>
+                    </div>
+                </div>
+            </section>
+            
         </div>
     )
 }
