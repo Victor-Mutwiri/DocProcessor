@@ -1,0 +1,17 @@
+.profile-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* margin-top: 2rem; */
+    background-color: white;
+}
+
+.profile-container .close-btn{
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    font-size: 1.3rem;
+    color: #007bff;
+    cursor: pointer;
+}

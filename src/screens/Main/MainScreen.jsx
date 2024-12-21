@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import './MainScreen.css'
 import DarkModeToggle from '../../components/common/DarkModeToggle'
 import Signout from '../../components/Signout/Signout'
+import Profile from '../Profile/Profile'
 import DocumentAnalysis from '../../components/DocumentAnalysis/DocumentAnalysis'
 import FileManagement from '../../components/FileManagement/FileList'
 import FileUpload from '../../components/FileManagement/FileUpload'
@@ -33,6 +34,7 @@ const MainScreen = () => {
                 <div style={{ display: 'flex', gap: '1rem' }}>
                     <DarkModeToggle />
                     <Signout />
+                    <button className="btn btn-primary" onClick={() => navigate('/profile')}>Profile</button>
                 </div>
                 
             </div>
