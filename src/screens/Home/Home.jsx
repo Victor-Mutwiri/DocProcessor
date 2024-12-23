@@ -27,7 +27,7 @@ const Home = () => {
             <div className="landing-page">
                 <h1>Chat with documents</h1>
                 <section className="hero-section">
-                    <h2>Dive into PDFs like never before with Sheria Aide</h2>
+                    <h2>Simplify Docs like never before with Sheria Aide</h2>
                     <p>
                         Legal and compliance professionals face the daunting task of managing vast amounts of 
                         <br/>documentation while ensuring accuracy and adherence to regulations.
@@ -79,9 +79,21 @@ const Home = () => {
                         <h6>4.3/5</h6>
                     </div>
                     <div className='client'>
-                        <p>“Sheria Aide is a must-have tool for legal professionals. It has helped me stay ahead of the curve.”</p>
-                        <h6>Peter Karanja, Solicitor</h6>
+                        <p>“...My experience so far has been very positive. Sheria Aide has significantly helped me to quickly filter out important information from a multitude of documents—often information that I wouldn't have found otherwise.
+                        The support has been particularly impressive...”</p>
+                        <h6>Peter Karanja, Corporate Lawyer</h6>
                         <h6>4.5/5</h6>
+                    </div>
+                    <div className='client'>
+                        <p>“Very Impressive!
+                        I have been looking for an application like this one... My first document was over 500 pages. It was processed in a few minutes, maybe less. It was very accurate on the responses to my questions... This is an excellent tool for day to day use, and as a knowledge base for our legal work.”</p>
+                        <h6>Patrick Jackson, Court reporter</h6>
+                        <h6>4.6/5</h6>
+                    </div>
+                    <div className='client'>
+                        <p>“Sheria Aide is a game-changer for chatting with documents! The AI-powered document analysis is incredibly accurate and efficient, saving so much time. It's intuitive to use and the answers it provides are invaluable. Highly recommend this tool!”</p>
+                        <h6>Sharley Gibson, Arbitrator / Mediator</h6>
+                        <h6>4.7/5</h6>
                     </div>
                 </div>
             </section>
