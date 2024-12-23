@@ -27,7 +27,9 @@ const Home = () => {
                 <h1>Chat with documents</h1>
                 <section className="hero-section">
                     <h2>Dive into PDFs like never before with Sheria Aide</h2>
-                    <p>Stop wasting time searching through PDFs. Summarize long documents and simplify complex PDFs with Sheria Aide.
+                    <p>
+                        Legal and compliance professionals face the daunting task of managing vast amounts of 
+                        <br/>documentation while ensuring accuracy and adherence to regulations.
                         <br /> Sheria Aide is a smart assistant that helps you get instant answers, highlights, <br/>explain complex concepts, and find key information in seconds.
                     </p>
                     {/* <button onClick={handleSignIn} className="sign-in-button">
@@ -53,6 +55,32 @@ const Home = () => {
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
                         <h4 style={{fontSize:'2.5rem', color:'black'}}>Built for Professionals</h4>
                         <h5 style={{fontSize:'1.6rem', color:'black', fontStyle:'italic'}}>The right tools just for you...</h5>
+                    </div>
+                </div>
+                
+            </section>
+            <section className='review'>
+                <h4>What do professionals say?</h4>
+                <div className='quote'>
+                    <div className='client'>
+                        <p>“Sheria Aide is a game changer. It has helped me save time and get more done in less time.”</p>
+                        <h6>Teng Whan, Advocate</h6>
+                        <h6>4.8/5</h6>
+                    </div>
+                    <div className='client'>
+                        <p>“I can’t imagine working without Sheria Aide. It has become an indispensable tool for me.”</p>
+                        <h6>Michael Smith, Barrister</h6>
+                        <h6>4.5/5</h6>
+                    </div>
+                    <div className='client'>
+                        <p>“Sheria Aide has helped me find key information in seconds. It’s like having a legal assistant by my side.”</p>
+                        <h6>John Doe, Corporate Lawyer</h6>
+                        <h6>4.3/5</h6>
+                    </div>
+                    <div className='client'>
+                        <p>“Sheria Aide is a must-have tool for legal professionals. It has helped me stay ahead of the curve.”</p>
+                        <h6>Peter Karanja, Solicitor</h6>
+                        <h6>4.5/5</h6>
                     </div>
                 </div>
             </section>
