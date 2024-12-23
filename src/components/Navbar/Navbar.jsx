@@ -1,33 +1,18 @@
-import { useEffect } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import { useAuth } from '@clerk/clerk-react'
+import { Link } from 'react-router-dom'
 import Logo from '../../assets/Sheria Aide.png'
 import './Navbar.css'
 
 const Navbar = () => {
-    const { isSignedIn } = useAuth()
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        // If user is already signed in, redirect to main screen
-        if (isSignedIn) {
-            navigate('/main')
-        }
-    }, [isSignedIn, navigate])
-    
-    const handleSignIn = () => {
-        navigate('/sign-in')
-    }
-
-
   return (
     <nav>
         <div className='logo-container'>
             <img src={Logo} className='logo'/>
             <h4>Sheria Aide</h4>
         </div>
-        <Link to='/'>Home</Link>
-        <button className='login-btn' onClick={handleSignIn}>Log in</button>
+        {/* <Link to='/'>Home</Link> */}
+        <Link to='/login'>
+            <button className='login-btn'>Log in</button>
+        </Link>
     </nav>
   )
 }
