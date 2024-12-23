@@ -1,0 +1,44 @@
+.clients{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
+.logo{
+    width: 70%;
+}
+/* .slick-list {
+    display: flex !important;
+    justify-content: center;
+}
+
+.slick-track {
+    display: flex !important;
+    justify-content: center;
+} */
+.carousel-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.2rem;
+}
+
+.carousel-slide img {
+    border-radius: 50%; /* Makes images circular */
+    width: 200px; 
+    height: 180px;
+    object-fit: fill;
+}
+  
+@media (max-width: 640px){
+    .skills{
+        padding: 3rem 4rem;
+    }
+    .logo{
+        width: 100%;
+    }
+    .logo i{
+        font-size: 3rem;
+    }
+}

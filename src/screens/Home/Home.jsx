@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import './Home.css'
 import Navbar from '../../components/Navbar/Navbar'
 import ProductImage from '../../assets/Sheria.png'
+import SliderComponent from '../../components/Slider/Slider'
 
 const Home = () => {
     const { isSignedIn } = useAuth()
@@ -57,7 +58,7 @@ const Home = () => {
                         <h5 style={{fontSize:'1.6rem', color:'black', fontStyle:'italic'}}>The right tools just for you...</h5>
                     </div>
                 </div>
-                
+                <SliderComponent/>
             </section>
             <section className='review'>
                 <h4>What do professionals say?</h4>
@@ -74,7 +75,7 @@ const Home = () => {
                     </div>
                     <div className='client'>
                         <p>“Sheria Aide has helped me find key information in seconds. It’s like having a legal assistant by my side.”</p>
-                        <h6>John Doe, Corporate Lawyer</h6>
+                        <h6>Antony Faulkner, Solicitor</h6>
                         <h6>4.3/5</h6>
                     </div>
                     <div className='client'>
