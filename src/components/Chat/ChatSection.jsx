@@ -1,22 +1,25 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import QueryTemplates from './QueryTemplates'
 import ChatMessage from './ChatMessage'
 import '../../styles/ChatSection.css'
 import { API_BASE_URL } from '../../config/config'
+import Processing from '../Processing/Processing'
 
 const ChatSection = () => {
     const [messages, setMessages] = useState([])
     const [inputMessage, setInputMessage] = useState('')
     const [selectedDocument, setSelectedDocument] = useState('')
     const [availableDocuments, setAvailableDocuments] = useState([])
+    const [processingStatus, setProcessingStatus] = useState('Idle')
+    const [showModal, setShowModal] = useState(false)
+    const intervalIdRef = useRef(null)
 
     useEffect(() => {
         const fetchAvailableDocuments = async () => {
             try {
                 const response = await fetch(`${API_BASE_URL}/api/files`);
                 const data = await response.json();
-
-                setAvailableDocuments(data);
+                setAvailableDocuments(data || []);
             } catch (error) {
                 console.error('Error fetching available documents:', error);
             }
@@ -24,6 +27,24 @@ const ChatSection = () => {
 
         fetchAvailableDocuments();
     }, []);
+
+    const fetchProcessingStatus = async () => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/processing-status`)
+            const data = await response.json()
+            setProcessingStatus(data.status)
+
+            if (data.status === 'Document processing completed successfully') {
+                setShowModal(true)
+                setTimeout(() => {
+                    setShowModal(false)
+                }, 5000)
+                clearInterval(intervalIdRef.current)
+            }
+        } catch (error) {
+            console.error('Error fetching processing status:', error)
+        }
+    }
 
     const handleSetActiveDocument = async (filename) => {
         try {
@@ -44,11 +65,19 @@ const ChatSection = () => {
                     )
                 )
                 setSelectedDocument(filename)
+                setProcessingStatus('Idle')
+
+                if (intervalIdRef.current) {
+                    clearInterval(intervalIdRef.current)
+                }
+                intervalIdRef.current = setInterval(fetchProcessingStatus, 8000)
             }
         } catch (error) {
             console.error('Error setting active document:', error)
         }
     }
+
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -97,6 +126,8 @@ const ChatSection = () => {
                 ))}
             </select>
 
+            <Processing status={processingStatus} showModal={showModal}/>
+
             <QueryTemplates onSelect={setInputMessage} />
 
             <div className="chat-messages">
@@ -120,5 +151,7 @@ const ChatSection = () => {
         </div>
     )
 }
+
+
 
 export default ChatSection 
