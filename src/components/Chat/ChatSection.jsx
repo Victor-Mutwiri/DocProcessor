@@ -4,6 +4,7 @@ import ChatMessage from './ChatMessage'
 import '../../styles/ChatSection.css'
 import { API_BASE_URL } from '../../config/config'
 import Processing from '../Processing/Processing'
+import LoadingDots from '../Loading/LoadingDots'
 
 const ChatSection = () => {
     const [messages, setMessages] = useState([])
@@ -12,6 +13,7 @@ const ChatSection = () => {
     const [availableDocuments, setAvailableDocuments] = useState([])
     const [processingStatus, setProcessingStatus] = useState('Idle')
     const [showModal, setShowModal] = useState(false)
+    const [isResponding, setIsResponding] = useState(false)
     const intervalIdRef = useRef(null)
 
     useEffect(() => {
@@ -86,6 +88,7 @@ const ChatSection = () => {
         const newMessage = { sender: 'You', content: inputMessage }
         setMessages([...messages, newMessage])
         setInputMessage('')
+        setIsResponding(true)
 
         try {
             const response = await fetch(`${API_BASE_URL}/api/chat`, {
@@ -104,8 +107,14 @@ const ChatSection = () => {
                 sender: 'Juri',
                 content: data.response || data.error
             }])
+            setIsResponding(false)
         } catch (error) {
             console.error('Chat error:', error)
+            setMessages(prev => [...prev, {
+                sender: 'Juri',
+                content: 'Sorry, I could not respond to your message.'
+            }])
+            setIsResponding(false)
         }
     }
 
@@ -134,6 +143,7 @@ const ChatSection = () => {
                 {messages.map((msg, index) => (
                     <ChatMessage key={index} message={msg} />
                 ))}
+                {isResponding && <LoadingDots />}
             </div>
 
             <form onSubmit={handleSubmit} className="chat-form">

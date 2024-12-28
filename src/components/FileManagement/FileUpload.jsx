@@ -28,7 +28,7 @@ const FileUpload = () => {
 
         const files = [...e.dataTransfer.files].filter(file => file.type === 'application/pdf')
         if (files.length === 0) {
-            setStatus('Please upload PDF files only')
+            setStatus('Please upload .pdf, .doc, & .docx files only')
             return
         }
         await handleFiles(files)
@@ -88,7 +88,7 @@ const FileUpload = () => {
                     ref={inputRef}
                     type="file"
                     multiple
-                    accept=".pdf"
+                    accept=".pdf,.doc,.docx"
                     onChange={(e) => handleFiles(e.target.files)}
                     className="hidden"
                 />
@@ -116,10 +116,10 @@ const FileUpload = () => {
                                     />
                                 </svg>
                                 <p className="upload-text">
-                                    Drag and drop your PDF files here, or click to select files
+                                    Drag and drop your PDF/DOC/DOCX files here, or click to select files
                                 </p>
                                 <p className="upload-hint">
-                                    PDF files only, up to 10MB each
+                                    PDF/DOC/DOCX files only, up to 10MB each
                                 </p>
                             </>
                         )}
