@@ -1,4 +1,3 @@
-
 import './Login.css';
 import { useAuth } from "@clerk/clerk-react";
 import {SignIn} from '@clerk/clerk-react'
@@ -9,7 +8,7 @@ const Login = () => {
     const navigate = useNavigate()
 
     if (isSignedIn) {
-        navigate('/main')
+        navigate('/user')
     }
 
     return (

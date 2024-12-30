@@ -7,6 +7,7 @@ import Home from './screens/Home/Home'
 import MainScreen from './screens/Main/MainScreen'
 import Profile from './screens/Profile/Profile'
 import Login from './screens/Login/Login'
+import UserAuth from './screens/User/UserAuth'
 /* import MainScreen from './components/screens/Main/MainScreen' */
 
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/main" element={<MainScreen />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/user' element={<UserAuth />} />
       </Routes>
     </Router>
   )
