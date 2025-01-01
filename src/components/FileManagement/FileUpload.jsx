@@ -39,15 +39,16 @@ const FileUpload = () => {
         for (let file of files) {
             formData.append('files', file)
         }
-
+    
         try {
             setUploading(true)
             setProgress(0)
             setStatus('Starting upload...')
-
+    
             const response = await fetch(`${API_BASE_URL}/api/upload`, {
                 method: 'POST',
                 body: formData,
+                credentials: 'include', // Include credentials (cookies) in the request
                 onUploadProgress: (progressEvent) => {
                     const percentCompleted = Math.round(
                         (progressEvent.loaded * 100) / progressEvent.total
@@ -57,7 +58,7 @@ const FileUpload = () => {
                 },
             })
             const data = await response.json()
-
+    
             if (data.message) {
                 setProgress(100)
                 setStatus('Upload complete!')

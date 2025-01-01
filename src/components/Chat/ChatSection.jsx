@@ -19,16 +19,22 @@ const ChatSection = () => {
     useEffect(() => {
         const fetchAvailableDocuments = async () => {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/files`);
-                const data = await response.json();
-                setAvailableDocuments(data || []);
+                const response = await fetch(`${API_BASE_URL}/api/files`)
+                const data = await response.json()
+                if (Array.isArray(data)) {
+                    setAvailableDocuments(data)
+                } else {
+                    setAvailableDocuments([])
+                    console.error('Unexpected response format:', data)
+                }
             } catch (error) {
-                console.error('Error fetching available documents:', error);
+                console.error('Error fetching available documents:', error)
+                setAvailableDocuments([])
             }
-        };
+        }
 
-        fetchAvailableDocuments();
-    }, []);
+        fetchAvailableDocuments()
+    }, [])
 
     const fetchProcessingStatus = async () => {
         try {
