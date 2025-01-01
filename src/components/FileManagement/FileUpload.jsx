@@ -1,10 +1,12 @@
 import { useState, useRef } from 'react'
+import PropTypes from 'prop-types'
+import axios from 'axios'
 import ProgressBar from '../common/ProgressBar'
 import LoadingSpinner from '../common/LoadingSpinner'
 import '../../styles/FileUpload.css'
 import { API_BASE_URL } from '../../config/config'
 
-const FileUpload = () => {
+const FileUpload = ({sessionId}) => {
     const [uploading, setUploading] = useState(false)
     const [progress, setProgress] = useState(0)
     const [status, setStatus] = useState('')
@@ -25,10 +27,12 @@ const FileUpload = () => {
         e.preventDefault()
         e.stopPropagation()
         setDragActive(false)
-
-        const files = [...e.dataTransfer.files].filter(file => file.type === 'application/pdf')
+        const files = [...e.dataTransfer.files].filter(file => 
+            ['application/pdf', 'application/msword', 
+             'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(file.type)
+        )
         if (files.length === 0) {
-            setStatus('Please upload .pdf, .doc, & .docx files only')
+            setStatus('Please upload valid .pdf, .doc, or .docx files only.')
             return
         }
         await handleFiles(files)
@@ -36,30 +40,23 @@ const FileUpload = () => {
 
     const handleFiles = async (files) => {
         const formData = new FormData()
-        for (let file of files) {
-            formData.append('files', file)
-        }
-    
+        files.forEach(file => formData.append('files', file))
+        
         try {
             setUploading(true)
             setProgress(0)
             setStatus('Starting upload...')
-    
+
             const response = await fetch(`${API_BASE_URL}/api/upload`, {
                 method: 'POST',
+                headers: {
+                    'Session-Id': sessionId, // Pass sessionId in headers
+                },
                 body: formData,
                 credentials: 'include', // Include credentials (cookies) in the request
-                onUploadProgress: (progressEvent) => {
-                    const percentCompleted = Math.round(
-                        (progressEvent.loaded * 100) / progressEvent.total
-                    )
-                    setProgress(percentCompleted)
-                    setStatus(`Uploading... ${percentCompleted}%`)
-                },
             })
-            const data = await response.json()
-    
-            if (data.message) {
+
+            if (response.ok) {
                 setProgress(100)
                 setStatus('Upload complete!')
                 setTimeout(() => {
@@ -67,12 +64,13 @@ const FileUpload = () => {
                     window.location.reload()
                 }, 1000)
             } else {
+                const data = await response.json()
                 throw new Error(data.error || 'Upload failed')
             }
         } catch (error) {
-            setStatus(error.message)
-            setProgress(0)
-            setTimeout(() => setUploading(false), 2000)
+            setStatus(error.message);
+            setProgress(0);
+            setTimeout(() => setUploading(false), 2000);
         }
     }
 
@@ -145,6 +143,10 @@ const FileUpload = () => {
             )}
         </div>
     )
+}
+
+FileUpload.propTypes = {
+    sessionId: PropTypes.string.isRequired
 }
 
 export default FileUpload 

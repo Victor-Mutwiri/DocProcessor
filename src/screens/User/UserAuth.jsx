@@ -1,9 +1,10 @@
 import {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../../config/config';
+import PropTypes from 'prop-types';
 import './UserAuth.css';
 
-const UserAuth = () => {
+const UserAuth = ({ onLogin }) => {
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
@@ -19,14 +20,16 @@ const UserAuth = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ name, password }),
+                credentials: 'include', // Include credentials (cookies) in the request
             })
             const data = await response.json()
-            if (data.message) {
+            if (response.ok) {
+                onLogin(data.session_id) // Pass the session ID to the parent component
                 navigate('/main')
             } else {
                 setError(data.error)
             }
-        } catch (error) {
+        } catch {
             setError('An error occurred during login')
         }
     }
@@ -42,12 +45,13 @@ const UserAuth = () => {
                 body: JSON.stringify({ name, password }),
             })
             const data = await response.json()
-            if (data.message) {
+            if (response.ok) {
+                onLogin(data.session_id) // Pass the session ID to the parent component
                 navigate('/main')
             } else {
                 setError(data.error)
             }
-        } catch (error) {
+        } catch {
             setError('An error occurred during registration')
         }
     }
@@ -117,5 +121,12 @@ const UserAuth = () => {
         </div>
     )
 }
+
+UserAuth.propTypes = {
+    onLogin: PropTypes.func.isRequired,
+}
+/* UserAuth.defaultProps = {
+    onLogin: () => {},
+}; */
 
 export default UserAuth

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import { useAuth } from '@clerk/clerk-react'
 import { useNavigate } from 'react-router-dom'
@@ -6,11 +7,12 @@ import DarkModeToggle from '../../components/common/DarkModeToggle'
 import Signout from '../../components/Signout/Signout'
 import Profile from '../Profile/Profile'
 import DocumentAnalysis from '../../components/DocumentAnalysis/DocumentAnalysis'
-import FileManagement from '../../components/FileManagement/FileList'
+import FileList from '../../components/FileManagement/FileList'
 import FileUpload from '../../components/FileManagement/FileUpload'
 import ChatSection from '../../components/Chat/ChatSection'
+import UserAuth from '../User/UserAuth'
 
-const MainScreen = () => {
+const MainScreen = ({sessionId}) => {
     const { isSignedIn, isLoaded } = useAuth()
     const navigate = useNavigate()
 
@@ -20,9 +22,12 @@ const MainScreen = () => {
         }
     }, [isSignedIn, isLoaded, navigate])
 
+
     if (!isLoaded || !isSignedIn) {
         return <div style={{display:'flex', justifyContent:'center', alignSelf:'center', alignItems: 'center'}}>Loading...</div>
     }
+
+    console.log ('The sessionId is:', sessionId)
 
     return (
         <div className="mainScreen">
@@ -41,13 +46,17 @@ const MainScreen = () => {
             {/* <DocumentAnalysis /> */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', gap: '1rem' }}>
                 <div className='fileManagement' style={{ display: 'flex', flexDirection: 'column', gap: '1rem', justifyContent: 'flex-start' }}>
-                    <FileManagement />
-                    <FileUpload />
+                    <FileList sessionId={sessionId}/>
+                    <FileUpload sessionId={sessionId} />
                 </div>
                 <ChatSection />
             </div>
         </div>
     )
+}
+
+MainScreen.propTypes = {
+    sessionId: PropTypes.string.isRequired
 }
 
 export default MainScreen

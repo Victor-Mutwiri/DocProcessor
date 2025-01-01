@@ -3,7 +3,7 @@ import ComparisonModal from './ComparisonModal';
 import '../../styles/FileList.css';
 import { API_BASE_URL } from '../../config/config';
 
-const FileList = () => {
+const FileList = ({sessionId}) => {
     const [files, setFiles] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedFile, setSelectedFile] = useState(null);
