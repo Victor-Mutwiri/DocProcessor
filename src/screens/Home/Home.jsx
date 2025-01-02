@@ -7,19 +7,18 @@ import ProductImage from '../../assets/Sheria.png'
 import SliderComponent from '../../components/Slider/Slider'
 
 const Home = () => {
-    const { isSignedIn } = useAuth()
-    const navigate = useNavigate()
+    /* const { isSignedIn } = useAuth()
+    const navigate = useNavigate() */
     
-    useEffect(() => {
-        // If user is already signed in, redirect to main screen
+    /* useEffect(() => {
         if (isSignedIn) {
             navigate('/main')
         }
-    }, [isSignedIn, navigate])
+    }, [isSignedIn, navigate]) */
     
-    const handleSignIn = () => {
+    /* const handleSignIn = () => {
         navigate('/sign-in')
-    }
+    } */
 
     return (
         <div className="home">

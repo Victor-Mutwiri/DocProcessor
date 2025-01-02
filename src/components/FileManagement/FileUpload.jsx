@@ -40,7 +40,7 @@ const FileUpload = ({sessionId}) => {
 
     const handleFiles = async (files) => {
         const formData = new FormData()
-        files.forEach(file => formData.append('files', file))
+        Array.from(files).forEach(file => formData.append('files', file))
         
         try {
             setUploading(true)
@@ -68,9 +68,9 @@ const FileUpload = ({sessionId}) => {
                 throw new Error(data.error || 'Upload failed')
             }
         } catch (error) {
-            setStatus(error.message);
-            setProgress(0);
-            setTimeout(() => setUploading(false), 2000);
+            setStatus(error.message)
+            setProgress(0)
+            setTimeout(() => setUploading(false), 2000)
         }
     }
 
@@ -78,6 +78,7 @@ const FileUpload = ({sessionId}) => {
         inputRef.current.click()
     }
 
+    console.log('sessionId in Uploads is:', sessionId)
     return (
         <div className="upload-container">
             <h2 className="upload-title">Upload Documents</h2>

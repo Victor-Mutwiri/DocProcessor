@@ -13,19 +13,20 @@ import ChatSection from '../../components/Chat/ChatSection'
 import UserAuth from '../User/UserAuth'
 
 const MainScreen = ({sessionId}) => {
-    const { isSignedIn, isLoaded } = useAuth()
+    const navigate = useNavigate()
+    /* const { isSignedIn, isLoaded } = useAuth()
     const navigate = useNavigate()
 
     useEffect(() => {
         if (isLoaded && !isSignedIn) {
             navigate('/sign-in')
         }
-    }, [isSignedIn, isLoaded, navigate])
+    }, [isSignedIn, isLoaded, navigate]) */
 
 
-    if (!isLoaded || !isSignedIn) {
+    /* if (!isLoaded || !isSignedIn) {
         return <div style={{display:'flex', justifyContent:'center', alignSelf:'center', alignItems: 'center'}}>Loading...</div>
-    }
+    } */
 
     console.log ('The sessionId is:', sessionId)
 
@@ -38,7 +39,7 @@ const MainScreen = ({sessionId}) => {
                 </h1>
                 <div style={{ display: 'flex', gap: '1rem' }}>
                     <DarkModeToggle />
-                    <Signout />
+                    {/* <Signout /> */}
                     <button className="btn btn-primary" onClick={() => navigate('/profile')}>Profile</button>
                 </div>
                 

@@ -10,7 +10,7 @@ const Navbar = () => {
             <h4>Sheria Aide</h4>
         </div>
         {/* <Link to='/'>Home</Link> */}
-        <Link to='/login'>
+        <Link to='/user'>
             <button className='login-btn'>Log in</button>
         </Link>
     </nav>

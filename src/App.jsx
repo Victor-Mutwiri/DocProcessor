@@ -29,7 +29,7 @@ function App() {
         <Route path="/sign-up/*" element={<SignUp routing="path" path="/sign-up" />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/main" element={<MainScreen sessionId={sessionId} />} />
-        <Route path='/login' element={<Login />} />
+        {/* <Route path='/login' element={<Login />} /> */}
         <Route path='/user' element={<UserAuth onLogin={handleLogin}/>} />
       </Routes>
     </Router>
