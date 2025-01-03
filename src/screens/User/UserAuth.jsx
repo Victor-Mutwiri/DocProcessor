@@ -1,132 +1,94 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../../config/config';
 import PropTypes from 'prop-types';
 import './UserAuth.css';
 
 const UserAuth = ({ onLogin }) => {
-    const [name, setName] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
-    const [activeTab, setActiveTab] = useState('login')
-    const navigate = useNavigate()
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [isLoginMode, setIsLoginMode] = useState(true);
+    const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
-        e.preventDefault()
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
-            const response = await fetch(`${API_BASE_URL}/login`, {
+            const endpoint = isLoginMode ? '/login' : '/register';
+            const response = await fetch(`${API_BASE_URL}${endpoint}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ name, password }),
-                credentials: 'include', // Include credentials (cookies) in the request
-            })
-            const data = await response.json()
+                credentials: 'include',
+            });
+            const data = await response.json();
             if (response.ok) {
-                onLogin(data.session_id) // Pass the session ID to the parent component
-                navigate('/main')
+                onLogin(data.session_id);
+                navigate('/main');
             } else {
-                setError(data.error)
+                setError(data.error || 'An error occurred');
             }
         } catch {
-            setError('An error occurred during login')
+            setError('An error occurred. Please try again.');
         }
-    }
-
-    const handleSignup = async (e) => {
-        e.preventDefault()
-        try {
-            const response = await fetch(`${API_BASE_URL}/register`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name, password }),
-            })
-            const data = await response.json()
-            if (response.ok) {
-                onLogin(data.session_id) // Pass the session ID to the parent component
-                navigate('/main')
-            } else {
-                setError(data.error)
-            }
-        } catch {
-            setError('An error occurred during registration')
-        }
-    }
+    };
 
     return (
         <div className="userAuth">
             <div className="auth-container">
-                <div className="tabs">
+                <div className="welcome-section">
+                    <h2>Welcome to Sheria Aide</h2>
+                    <p>Please {isLoginMode ? 'log in' : 'register'} to continue.</p>
+                </div>
+                <div className="auth-toggle">
                     <button
-                        className={`tab ${activeTab === 'login' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('login')}
+                        className={`toggle-btn ${isLoginMode ? 'active' : ''}`}
+                        onClick={() => {
+                            setIsLoginMode(true);
+                            setError('');
+                        }}
                     >
                         Login
                     </button>
                     <button
-                        className={`tab ${activeTab === 'signup' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('signup')}
+                        className={`toggle-btn ${!isLoginMode ? 'active' : ''}`}
+                        onClick={() => {
+                            setIsLoginMode(false);
+                            setError('');
+                        }}
                     >
                         Sign Up
                     </button>
                 </div>
-
-                {activeTab === 'login' && (
-                    <div className="login">
-                        <h1>Login</h1>
-                        <form onSubmit={handleLogin}>
-                            <input
-                                type="text"
-                                placeholder="Name"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                            />
-                            <input
-                                type="password"
-                                placeholder="Password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                            <button type="submit">Login</button>
-                        </form>
-                        {error && <p className="error">{error}</p>}
-                    </div>
-                )}
-
-                {activeTab === 'signup' && (
-                    <div className="signup">
-                        <h1>Sign Up</h1>
-                        <form onSubmit={handleSignup}>
-                            <input
-                                type="text"
-                                placeholder="Name"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                            />
-                            <input
-                                type="password"
-                                placeholder="Password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                            <button type="submit">Sign Up</button>
-                        </form>
-                        {error && <p className="error">{error}</p>}
-                    </div>
-                )}
+                <form onSubmit={handleSubmit} className="auth-form">
+                    <input
+                        type="text"
+                        placeholder="Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    <button type="submit" className="submit-btn">
+                        {isLoginMode ? 'Login' : 'Sign Up'}
+                    </button>
+                </form>
+                {error && <p className="error-message">{error}</p>}
             </div>
         </div>
-    )
-}
+    );
+};
 
 UserAuth.propTypes = {
     onLogin: PropTypes.func.isRequired,
-}
-/* UserAuth.defaultProps = {
-    onLogin: () => {},
-}; */
+};
 
-export default UserAuth
+export default UserAuth;
