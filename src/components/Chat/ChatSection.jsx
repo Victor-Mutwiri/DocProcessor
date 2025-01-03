@@ -5,8 +5,10 @@ import '../../styles/ChatSection.css'
 import { API_BASE_URL } from '../../config/config'
 import Processing from '../Processing/Processing'
 import LoadingDots from '../Loading/LoadingDots'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan, faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 
-const ChatSection = () => {
+const ChatSection = ({sessionId}) => {
     const [messages, setMessages] = useState([])
     const [inputMessage, setInputMessage] = useState('')
     const [selectedDocument, setSelectedDocument] = useState('')
@@ -19,22 +21,36 @@ const ChatSection = () => {
     useEffect(() => {
         const fetchAvailableDocuments = async () => {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/files`)
-                const data = await response.json()
-                if (Array.isArray(data)) {
-                    setAvailableDocuments(data)
+                const response = await fetch(`${API_BASE_URL}/api/files`, {
+                    method: 'GET',
+                    headers: {
+                        'Session-Id': sessionId, // Pass sessionId in headers
+                    },
+                    credentials: 'include', // Include credentials (cookies) in the request
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    // Assuming 'files' key in response contains the documents
+                    if (Array.isArray(data.files)) {
+                        setAvailableDocuments(data.files);
+                    } else {
+                        setAvailableDocuments([]);
+                        console.error('Unexpected response format:', data);
+                    }
                 } else {
-                    setAvailableDocuments([])
-                    console.error('Unexpected response format:', data)
+                    console.error('Error fetching files:', data.error);
+                    setAvailableDocuments([]);
                 }
             } catch (error) {
-                console.error('Error fetching available documents:', error)
-                setAvailableDocuments([])
+                console.error('Error fetching available documents:', error);
+                setAvailableDocuments([]);
             }
-        }
+        };
+    
+        fetchAvailableDocuments();
+    }, [sessionId]);
 
-        fetchAvailableDocuments()
-    }, [])
+    console.log('sessionId in ChatSection is:', sessionId)
 
     const fetchProcessingStatus = async () => {
         try {
@@ -85,7 +101,26 @@ const ChatSection = () => {
         }
     }
 
-    
+    const handleDelete = async (filename) => {
+        if (!confirm('Are you sure you want to delete this file?')) return
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/delete/${filename}`, {
+                method: 'POST',
+                headers: {
+                    'Session-Id': sessionId,
+                },
+                credentials: 'include',
+            })
+            const data = await response.json()
+            if (data.message) {
+                setAvailableDocuments(prevDocuments =>
+                    prevDocuments.filter(doc => doc.filename !== filename)
+                )
+            }
+        } catch (error) {
+            console.error('Error deleting file:', error)
+        }
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -128,18 +163,40 @@ const ChatSection = () => {
         <div className="chat-container">
             <h2 className="chat-title">Chat Assistant</h2>
             
-            <select
-                value={selectedDocument}
-                onChange={(e) => handleSetActiveDocument(e.target.value)}
-                className="chat-select"
-            >
-                <option value="">All Active Documents</option>
-                {availableDocuments.map((doc) => (
-                    <option key={doc.filename} value={doc.filename}>
-                        {doc.filename} {doc.active ? '✔️' : ''}
-                    </option>
-                ))}
-            </select>
+            <div className="active-files-container">
+                <label htmlFor="active-files-dropdown" className="active-files-label">
+                    Select Document:
+                </label>
+                <div id="active-files-dropdown" className="active-files-dropdown">
+                    <div
+                        onClick={() => handleSetActiveDocument('')}
+                        className={`file-item ${!selectedDocument ? 'active' : ''}`}
+                    >
+                        All Active Documents
+                    </div>
+                    {availableDocuments.map((doc) => (
+                        <div
+                            key={doc.filename}
+                            className={`file-item ${doc.active ? 'active' : ''}`}
+                            onClick={() => handleSetActiveDocument(doc.filename)}
+                        >
+                            <span className="file-name">
+                                {doc.filename}
+                                {doc.active && <span className="active-indicator">✔️</span>}
+                            </span>
+                            <FontAwesomeIcon
+                                icon={faTrashCan}
+                                className="trash-icon"
+                                onClick={(e) => {
+                                    e.stopPropagation(); // Prevent triggering `handleSetActiveDocument`
+                                    handleDelete(doc.filename);
+                                }}
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
 
             <Processing status={processingStatus} showModal={showModal}/>
 

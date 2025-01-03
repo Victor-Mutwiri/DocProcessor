@@ -9,6 +9,66 @@
 }
 
 
+/* Chat section */
+
+.active-files-container {
+    margin-bottom: 20px;
+}
+
+.active-files-label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.active-files-dropdown {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.file-item:hover {
+    background-color: #f0f0f0;
+}
+
+.file-item.active {
+    background-color: #e6ffe6;
+}
+
+.file-name {
+    display: flex;
+    align-items: center;
+}
+
+.active-indicator {
+    margin-left: 8px;
+    color: green;
+}
+
+.trash-icon {
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.trash-icon:hover {
+    color: red;
+}
+
+/* Chat section end */
+
+
 @media (max-width: 768px) {
     .chat-container {
         padding: var(--spacing-md);

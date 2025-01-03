@@ -8,25 +8,39 @@ const FileList = ({sessionId}) => {
     const [showModal, setShowModal] = useState(false);
     const [selectedFile, setSelectedFile] = useState(null);
 
-    useEffect(() => {
+    /* useEffect(() => {
         const fetchFiles = async () => {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/files`);
-                const data = await response.json();
-                setFiles(data.files || []);
+                const response = await fetch(`${API_BASE_URL}/api/files`, {
+                    method: 'GET',
+                    headers: {
+                        'Session-Id': sessionId, // Pass sessionId in headers
+                    },
+                    credentials: 'include', // Include credentials (cookies) in the request
+                });
+                const data = await response.json()
+                if (response.ok) {
+                    setFiles(data.files || [])
+                } else {
+                    console.error('Error fetching files:', data.error)
+                }
             } catch (error) {
                 console.error('Error fetching files:', error);
             }
         };
 
         fetchFiles();
-    }, []);
+    }, [sessionId]); */
 
     const handleDelete = async (filename) => {
         if (!confirm('Are you sure you want to delete this file?')) return;
         try {
             const response = await fetch(`${API_BASE_URL}/api/delete/${filename}`, {
                 method: 'POST',
+                headers: {
+                    'Session-Id': sessionId, // Pass sessionId in headers
+                },
+                credentials: 'include', // Include credentials (cookies) in the request
             });
             const data = await response.json();
             if (data.message) {
@@ -36,6 +50,8 @@ const FileList = ({sessionId}) => {
             console.error('Error deleting file:', error);
         }
     };
+
+    console.log('sessionId in FileList is:', sessionId)
 
     return (
         <div className="file-list-container">

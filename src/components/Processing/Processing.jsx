@@ -8,7 +8,7 @@ const Processing = ({ status, showModal}) => {
   return (
     <div className="processing-container">
       {status === 'Idle' ? (
-        <p>Document is being processed...</p>
+        <p></p>
       ) : (
         <p>{status}</p>
       )}

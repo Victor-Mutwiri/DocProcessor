@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import ProgressBar from '../common/ProgressBar'
@@ -12,6 +12,12 @@ const FileUpload = ({sessionId}) => {
     const [status, setStatus] = useState('')
     const [dragActive, setDragActive] = useState(false)
     const inputRef = useRef(null)
+
+    useEffect(() => {
+        if (sessionId){
+            localStorage.setItem('sessionId', sessionId)
+        }
+    }, [sessionId])
 
     const handleDrag = (e) => {
         e.preventDefault()

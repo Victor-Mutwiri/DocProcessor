@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useAuth } from '@clerk/clerk-react'
 import { useNavigate } from 'react-router-dom'
 import './MainScreen.css'
@@ -12,22 +12,14 @@ import FileUpload from '../../components/FileManagement/FileUpload'
 import ChatSection from '../../components/Chat/ChatSection'
 import UserAuth from '../User/UserAuth'
 
-const MainScreen = ({sessionId}) => {
+const MainScreen = () => {
     const navigate = useNavigate()
-    /* const { isSignedIn, isLoaded } = useAuth()
-    const navigate = useNavigate()
+    const [sessionId, setSessionId] = useState(localStorage.getItem('sessionId'))
 
-    useEffect(() => {
-        if (isLoaded && !isSignedIn) {
-            navigate('/sign-in')
-        }
-    }, [isSignedIn, isLoaded, navigate]) */
-
-
-    /* if (!isLoaded || !isSignedIn) {
-        return <div style={{display:'flex', justifyContent:'center', alignSelf:'center', alignItems: 'center'}}>Loading...</div>
-    } */
-
+    const handleLogin = (sessionId) => {
+        setSessionId(sessionId)
+        localStorage.setItem('sessionId', sessionId)
+    }
     console.log ('The sessionId is:', sessionId)
 
     return (
@@ -50,7 +42,7 @@ const MainScreen = ({sessionId}) => {
                     <FileList sessionId={sessionId}/>
                     <FileUpload sessionId={sessionId} />
                 </div>
-                <ChatSection />
+                <ChatSection sessionId={sessionId}/>
             </div>
         </div>
     )
