@@ -10,6 +10,7 @@ import DocumentAnalysis from '../../components/DocumentAnalysis/DocumentAnalysis
 import FileList from '../../components/FileManagement/FileList'
 import FileUpload from '../../components/FileManagement/FileUpload'
 import ChatSection from '../../components/Chat/ChatSection'
+import Logout from '../../components/Logout/Logout'
 import UserAuth from '../User/UserAuth'
 
 const MainScreen = () => {
@@ -31,8 +32,9 @@ const MainScreen = () => {
                 </h1>
                 <div style={{ display: 'flex', gap: '1rem' }}>
                     <DarkModeToggle />
+                    <Logout />
                     {/* <Signout /> */}
-                    <button className="btn btn-primary" onClick={() => navigate('/profile')}>Profile</button>
+                    {/* <button className="btn btn-primary" onClick={() => navigate('/profile')}>Profile</button> */}
                 </div>
                 
             </div>

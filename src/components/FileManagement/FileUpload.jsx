@@ -33,21 +33,26 @@ const FileUpload = ({sessionId}) => {
         e.preventDefault()
         e.stopPropagation()
         setDragActive(false)
-        const files = [...e.dataTransfer.files].filter(file => 
-            ['application/pdf', 'application/msword', 
-             'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(file.type)
-        )
-        if (files.length === 0) {
-            setStatus('Please upload valid .pdf, .doc, or .docx files only.')
+
+        const files = e.dataTransfer.files
+        if (files.length > 1) {
+            setStatus('Please upload only one document at a time.')
             return
         }
-        await handleFiles(files)
+
+        const file = files[0]
+        if (!['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(file.type)) {
+            setStatus('Invalid file type. Only .pdf, .doc, or .docx files are allowed.')
+            return
+        }
+
+        await handleFile(file)
     }
 
-    const handleFiles = async (files) => {
+    const handleFile = async (file) => {
         const formData = new FormData()
-        Array.from(files).forEach(file => formData.append('files', file))
-        
+        formData.append('file', file)
+
         try {
             setUploading(true)
             setProgress(0)
@@ -93,9 +98,8 @@ const FileUpload = ({sessionId}) => {
                 <input
                     ref={inputRef}
                     type="file"
-                    multiple
                     accept=".pdf,.doc,.docx"
-                    onChange={(e) => handleFiles(e.target.files)}
+                    onChange={(e) => handleFile(e.target.files[0])}
                     className="hidden"
                 />
                 
@@ -122,7 +126,7 @@ const FileUpload = ({sessionId}) => {
                                     />
                                 </svg>
                                 <p className="upload-text">
-                                    Drag and drop your PDF/DOC/DOCX files here, or click to select files
+                                    Drag and drop your PDF/DOC/DOCX file here, or click to select files
                                 </p>
                                 <p className="upload-hint">
                                     PDF/DOC/DOCX files only, up to 10MB each

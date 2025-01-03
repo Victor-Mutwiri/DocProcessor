@@ -76,8 +76,10 @@ const ChatSection = ({sessionId}) => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Session-Id': sessionId,
                 },
                 body: JSON.stringify({ filename }),
+                credentials: 'include',
             })
             const data = await response.json()
             if (data.message) {
@@ -136,6 +138,7 @@ const ChatSection = ({sessionId}) => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Session-Id': sessionId,
                 },
                 body: JSON.stringify({
                     message: inputMessage,
