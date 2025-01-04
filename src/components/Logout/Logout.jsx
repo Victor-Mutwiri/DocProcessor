@@ -1,11 +1,12 @@
 import './Logout.css'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 import {API_BASE_URL} from '../../config/config'
 
 
 
-const Logout = () => {
+const Logout = ({onLogout}) => {
     const navigate = useNavigate();
     const [isLoggingOut, setIsLoggingOut] = useState(false)
 
@@ -21,6 +22,7 @@ const Logout = () => {
                 const data = await response.json()
                 if (response.ok) {
                     console.log(data.message)
+                    onLogout() // Call the onLogout function passed as a prop
                     navigate('/') // Redirect to home page
                 } else {
                     console.error('Error signing out from backend:', data.error)
@@ -46,6 +48,10 @@ const Logout = () => {
             </button>
         </div>
     )
+}
+
+Logout.propTypes = {
+    onLogout: PropTypes.func.isRequired
 }
 
 export default Logout

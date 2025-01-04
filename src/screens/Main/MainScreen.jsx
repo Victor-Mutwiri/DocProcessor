@@ -13,26 +13,25 @@ import ChatSection from '../../components/Chat/ChatSection'
 import Logout from '../../components/Logout/Logout'
 import UserAuth from '../User/UserAuth'
 
-const MainScreen = () => {
+const MainScreen = ({sessionId, onLogout}) => {
     const navigate = useNavigate()
-    const [sessionId, setSessionId] = useState(localStorage.getItem('sessionId'))
 
-    const handleLogin = (sessionId) => {
-        setSessionId(sessionId)
-        localStorage.setItem('sessionId', sessionId)
-    }
+    useEffect(() => {
+        if (!sessionId) {
+            navigate('/')
+        }
+    }, [sessionId, navigate])
     console.log ('The sessionId is:', sessionId)
 
     return (
         <div className="mainScreen">
-        {/* <div className="container mx-auto px-4 py-8"> */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h1 className="text-3xl font-bold mb-5 text-center">
                     Sheria Aide
                 </h1>
                 <div style={{ display: 'flex', gap: '1rem' }}>
                     <DarkModeToggle />
-                    <Logout />
+                    <Logout onLogout={onLogout} />
                     {/* <Signout /> */}
                     {/* <button className="btn btn-primary" onClick={() => navigate('/profile')}>Profile</button> */}
                 </div>
@@ -51,7 +50,8 @@ const MainScreen = () => {
 }
 
 MainScreen.propTypes = {
-    sessionId: PropTypes.string.isRequired
+    sessionId: PropTypes.string.isRequired,
+    onLogout: PropTypes.func.isRequired
 }
 
 export default MainScreen

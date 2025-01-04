@@ -19,6 +19,7 @@ function App() {
   const handleLogin = (sessionId) => {
     console.log('Logged in with session ID:', sessionId)
     setSessionId(sessionId) // Store session ID globally
+    localStorage.setItem('sessionId', sessionId) // Store session ID in localStorage
   }
 
   const handleLogout = () => {
