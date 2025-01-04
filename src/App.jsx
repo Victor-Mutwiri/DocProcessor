@@ -14,6 +14,7 @@ import UserAuth from './screens/User/UserAuth'
 
 function App() {
   const [sessionId, setSessionId] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
 
 
   const handleLogin = (sessionId) => {
@@ -32,7 +33,12 @@ function App() {
     if (storedSessionId) {
       setSessionId(storedSessionId)
     }
+    setIsLoading(false)
   }, [])
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <Router>

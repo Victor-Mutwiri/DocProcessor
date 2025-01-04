@@ -1,3 +1,5 @@
+@import './theme.css';
+
 .message {
     padding: var(--spacing-md);
     border-radius: var(--radius-lg);
@@ -36,6 +38,7 @@
 
 .message-sender {
     font-weight: 600;
+    color: var(--text-muted);
 }
 
 .message-time {

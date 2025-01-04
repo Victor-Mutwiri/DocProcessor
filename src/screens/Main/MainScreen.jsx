@@ -18,7 +18,7 @@ const MainScreen = ({sessionId, onLogout}) => {
 
     useEffect(() => {
         if (!sessionId) {
-            navigate('/')
+            navigate('/user')
         }
     }, [sessionId, navigate])
     console.log ('The sessionId is:', sessionId)
@@ -32,8 +32,6 @@ const MainScreen = ({sessionId, onLogout}) => {
                 <div style={{ display: 'flex', gap: '1rem' }}>
                     <DarkModeToggle />
                     <Logout onLogout={onLogout} />
-                    {/* <Signout /> */}
-                    {/* <button className="btn btn-primary" onClick={() => navigate('/profile')}>Profile</button> */}
                 </div>
                 
             </div>

@@ -6,7 +6,7 @@ import { API_BASE_URL } from '../../config/config'
 import Processing from '../Processing/Processing'
 import LoadingDots from '../Loading/LoadingDots'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashCan, faCheckCircle } from '@fortawesome/free-regular-svg-icons';
+import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
 const ChatSection = ({sessionId}) => {
     const [messages, setMessages] = useState([])

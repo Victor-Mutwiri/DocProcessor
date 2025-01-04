@@ -51,13 +51,13 @@ const FileUpload = ({sessionId}) => {
 
     const handleFile = async (file) => {
         const formData = new FormData()
-        formData.append('file', file)
-
+        formData.append('files', file)  // Change 'file' to 'files'
+    
         try {
             setUploading(true)
             setProgress(0)
             setStatus('Starting upload...')
-
+    
             const response = await fetch(`${API_BASE_URL}/api/upload`, {
                 method: 'POST',
                 headers: {
@@ -66,7 +66,7 @@ const FileUpload = ({sessionId}) => {
                 body: formData,
                 credentials: 'include', // Include credentials (cookies) in the request
             })
-
+    
             if (response.ok) {
                 setProgress(100)
                 setStatus('Upload complete!')
