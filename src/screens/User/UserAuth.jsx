@@ -15,7 +15,7 @@ const UserAuth = ({ onLogin }) => {
         e.preventDefault();
         try {
             const endpoint = isLoginMode ? '/login' : '/register';
-            const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+            const response = await fetch(`${API_BASE_URL}/api${endpoint}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
