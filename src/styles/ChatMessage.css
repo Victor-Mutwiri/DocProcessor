@@ -21,7 +21,8 @@
 }
 
 .message-ai {
-    background-color: var(--color-primary);
+    /* background-color: var(--color-primary); */
+    background-color: var(--bg-lightgreen);
     /* background-color: var(--color-primary); */
     color: black;
     /* color: white; */

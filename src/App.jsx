@@ -3,11 +3,10 @@ import './styles/utilities.css'
 import './styles/App.css'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { SignIn, SignUp } from '@clerk/clerk-react'
+/* import { SignIn, SignUp } from '@clerk/clerk-react' */
 import Home from './screens/Home/Home'
 import MainScreen from './screens/Main/MainScreen'
 import Profile from './screens/Profile/Profile'
-import Login from './screens/Login/Login'
 import UserAuth from './screens/User/UserAuth'
 /* import MainScreen from './components/screens/Main/MainScreen' */
 
@@ -45,7 +44,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         {/* <Route path="/sign-in/*" element={<SignIn routing="path" path="/sign-in" />} /> */}
-        <Route path="/sign-up/*" element={<SignUp routing="path" path="/sign-up" />} />
+        {/* <Route path="/sign-up/*" element={<SignUp routing="path" path="/sign-up" />} /> */}
         <Route path="/profile" element={<Profile />} />
         {/* <Route path="/main" element={<MainScreen sessionId={sessionId} />} /> */}
         <Route path="/main" element={<MainScreen sessionId={sessionId} onLogout={handleLogout} />} />
