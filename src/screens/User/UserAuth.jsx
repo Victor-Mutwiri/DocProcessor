@@ -19,6 +19,7 @@ const UserAuth = ({ onLogin }) => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                     'Access-Control-Allow-Origin': 'https://doc-processor-theta.vercel.app'
                 },
                 body: JSON.stringify({ name, password }),
                 credentials: 'include',
