@@ -11,7 +11,7 @@ const Navbar = () => {
         </div>
         {/* <Link to='/'>Home</Link> */}
         <Link to='/user'>
-            <button className='login-btn'>Log in</button>
+            <button className='login-btn'>Login</button>
         </Link>
     </nav>
   )

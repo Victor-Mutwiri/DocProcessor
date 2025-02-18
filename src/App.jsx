@@ -10,6 +10,7 @@ import Profile from './screens/Profile/Profile'
 import UserAuth from './screens/User/UserAuth'
 /* import MainScreen from './components/screens/Main/MainScreen' */
 
+const SESSION_EXPIRATION_HOURS = 2
 
 function App() {
   const [sessionId, setSessionId] = useState(null)
@@ -18,19 +19,26 @@ function App() {
 
   const handleLogin = (sessionId) => {
     console.log('Logged in with session ID:', sessionId)
-    setSessionId(sessionId) // Store session ID globally
-    localStorage.setItem('sessionId', sessionId) // Store session ID in localStorage
+    const expirationTime = new Date().getTime() + SESSION_EXPIRATION_HOURS * 60 * 60 * 1000
+    setSessionId(sessionId)
+    localStorage.setItem('sessionId', sessionId)
+    localStorage.setItem('sessionExpiration', expirationTime)
   }
 
   const handleLogout = () => {
     setSessionId(null)
     localStorage.removeItem('sessionId')
+    localStorage.removeItem('sessionExpiration')
   }
 
   useEffect(() => {
     const storedSessionId = localStorage.getItem('sessionId')
-    if (storedSessionId) {
+    const sessionExpiration = localStorage.getItem('sessionExpiration')
+    const currentTime = new Date().getTime()
+    if (storedSessionId && sessionExpiration && currentTime < sessionExpiration) {
       setSessionId(storedSessionId)
+    } else {
+      handleLogout()
     }
     setIsLoading(false)
   }, [])
