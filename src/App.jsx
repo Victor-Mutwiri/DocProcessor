@@ -8,6 +8,7 @@ import Home from './screens/Home/Home'
 import MainScreen from './screens/Main/MainScreen'
 import Profile from './screens/Profile/Profile'
 import UserAuth from './screens/User/UserAuth'
+import ContractReview from './screens/Contract/ContractReview'
 /* import MainScreen from './components/screens/Main/MainScreen' */
 
 const SESSION_EXPIRATION_HOURS = 2
@@ -58,6 +59,7 @@ function App() {
         <Route path="/main" element={<MainScreen sessionId={sessionId} onLogout={handleLogout} />} />
         {/* <Route path='/user' element={<UserAuth onLogin={handleLogin}/>} /> */}
         <Route path="/user" element={sessionId ? <Navigate to="/main" /> : <UserAuth onLogin={handleLogin} />} />
+        <Route path="/contract-review" element={<ContractReview sessionId={sessionId}/>} />
       </Routes>
     </Router>
   )
