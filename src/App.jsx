@@ -59,7 +59,7 @@ function App() {
         <Route path="/main" element={<MainScreen sessionId={sessionId} onLogout={handleLogout} />} />
         {/* <Route path='/user' element={<UserAuth onLogin={handleLogin}/>} /> */}
         <Route path="/user" element={sessionId ? <Navigate to="/main" /> : <UserAuth onLogin={handleLogin} />} />
-        <Route path="/contract-review" element={<ContractReview sessionId={sessionId}/>} />
+        <Route path="/contract-review" element={sessionId ? <ContractReview sessionId={sessionId}/> : <UserAuth onLogin={handleLogin} />} />
       </Routes>
     </Router>
   )

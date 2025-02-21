@@ -21,7 +21,7 @@ const MainScreen = ({sessionId, onLogout}) => {
             navigate('/user')
         }
     }, [sessionId, navigate])
-    console.log ('The sessionId is:', sessionId)
+    console.log ('The sessionId in mainscreen is:', sessionId)
 
     return (
         <div className="mainScreen">
@@ -32,6 +32,7 @@ const MainScreen = ({sessionId, onLogout}) => {
                 <div style={{ display: 'flex', gap: '1rem' }}>
                     <DarkModeToggle />
                     <Logout onLogout={onLogout} />
+                    <a href="/contract-review" className="text-blue-500">Contracts</a>
                 </div>
                 
             </div>

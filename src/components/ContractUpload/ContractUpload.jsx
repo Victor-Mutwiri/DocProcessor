@@ -5,7 +5,7 @@ import LoadingSpinner from '../common/LoadingSpinner'
 import '../../styles/FileUpload.css'
 import { API_BASE_URL } from '../../config/config'
 
-const FileUpload = ({sessionId}) => {
+const ContractUpload = ({sessionId}) => {
     const [uploading, setUploading] = useState(false)
     const [progress, setProgress] = useState(0)
     const [status, setStatus] = useState('')
@@ -57,7 +57,7 @@ const FileUpload = ({sessionId}) => {
             setProgress(0)
             setStatus('Starting upload...')
     
-            const response = await fetch(`${API_BASE_URL}/api/upload`, {
+            const response = await fetch(`${API_BASE_URL}/api/contract-upload`, {
                 method: 'POST',
                 headers: {
                     'Session-Id': sessionId, // Pass sessionId in headers
@@ -88,7 +88,7 @@ const FileUpload = ({sessionId}) => {
         inputRef.current.click()
     }
 
-    console.log('sessionId in Uploads is:', sessionId)
+    console.log('sessionId in Contract Uploads is:', sessionId)
     return (
         <div className="upload-container">
             <h2 className="upload-title">Upload Documents</h2>
@@ -155,8 +155,8 @@ const FileUpload = ({sessionId}) => {
     )
 }
 
-FileUpload.propTypes = {
+ContractUpload.propTypes = {
     sessionId: PropTypes.string.isRequired
 }
 
-export default FileUpload 
+export default ContractUpload 
