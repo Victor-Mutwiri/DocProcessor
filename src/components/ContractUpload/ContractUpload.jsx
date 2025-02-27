@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import ProgressBar from '../common/ProgressBar'
 import LoadingSpinner from '../common/LoadingSpinner'
-import '../../styles/FileUpload.css'
+import './ContractUpload.css'
 import { API_BASE_URL } from '../../config/config'
 
 const ContractUpload = ({sessionId}) => {
@@ -90,8 +90,8 @@ const ContractUpload = ({sessionId}) => {
 
     console.log('sessionId in Contract Uploads is:', sessionId)
     return (
-        <div className="upload-container">
-            <h2 className="upload-title">Upload Documents</h2>
+        <div className="uploads-container">
+            <h2 className="uploads-title">Upload Documents</h2>
             
             <div onDragEnter={handleDrag}>
                 <input
@@ -103,7 +103,7 @@ const ContractUpload = ({sessionId}) => {
                 />
                 
                 <div 
-                    className={`dropzone ${dragActive ? 'active' : ''} ${uploading ? 'disabled' : ''}`}
+                    className={`dropzones ${dragActive ? 'active' : ''} ${uploading ? 'disabled' : ''}`}
                     onClick={handleButtonClick}
                 >
                     <div className="text-center">
@@ -112,7 +112,7 @@ const ContractUpload = ({sessionId}) => {
                         ) : (
                             <>
                                 <svg 
-                                    className="upload-icon"
+                                    className="uploads-icon"
                                     stroke="currentColor" 
                                     fill="none" 
                                     viewBox="0 0 48 48"
@@ -124,10 +124,10 @@ const ContractUpload = ({sessionId}) => {
                                         strokeLinejoin="round"
                                     />
                                 </svg>
-                                <p className="upload-text">
+                                <p className="uploads-text">
                                     Drag and drop your PDF/DOC/DOCX file here, or click to select files
                                 </p>
-                                <p className="upload-hint">
+                                <p className="uploads-hint">
                                     PDF/DOC/DOCX files only, up to 10MB each
                                 </p>
                             </>

@@ -1,10 +1,9 @@
 .contract-review {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    /* background: #fff; */
+    /* border-radius: 10px; */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     text-align: center;
   }
   
@@ -13,63 +12,11 @@
     color: #333;
   }
   
-  .file-upload {
-    margin-bottom: 20px;
-  }
-  
-  .file-upload input {
-    display: block;
-    margin: 10px auto;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .file-upload button {
-    background: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .file-upload button:hover {
-    background: #0056b3;
-  }
-  
-  .file-upload button:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .file-list {
-    text-align: left;
-    margin-top: 15px;
-  }
-  
-  .file-list ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .file-list li {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 5px 0;
-  }
-  
-  .loading {
-    color: #ff9800;
-  }
-  
-  .error {
-    color: red;
-    font-weight: bold;
+  .contract-review-container{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding: 2rem;
+    /* width: 70%; */
   }
   
   .review-output {

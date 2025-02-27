@@ -6,6 +6,9 @@ import PropTypes from 'prop-types'
 
 const ContractList = ({sessionId}) => {
     const [files, setFiles] = useState([]);
+    const [review, setReview] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const fetchFiles = async () => {
@@ -50,6 +53,38 @@ const ContractList = ({sessionId}) => {
         }
     };
 
+    const handleReview = async (filename) => {
+        setLoading(true);
+        setError('');
+        setReview('');
+    
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/review-contract`, {
+                method: 'POST',
+                headers: {
+                    'Session-Id': sessionId,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ filename }),
+                credentials: 'include',
+            });
+            const data = await response.json();
+            if (response.ok) {
+                setReview(data.review);
+                console.log('Review:', data.review);
+            } else {
+                setError(data.error || 'Failed to review contract.');
+            }
+        } catch (error) {
+            setError('An error occurred while reviewing the contract.');
+            console.error('Error reviewing contract:', error);
+        } finally {
+            setLoading(false);
+        }
+        console.log(filename)
+        console.log(JSON.stringify({ filename }));
+    };
+
     console.log('sessionId in Contract List is:', sessionId)
 
     return (
@@ -60,6 +95,14 @@ const ContractList = ({sessionId}) => {
                     <div key={file.filename} className="file-item">
                         <div className="file-info">
                             <span>{file.filename}</span>
+                        </div>
+                        <div className="file-actions">
+                            <button
+                                onClick={() => handleReview(file.filename)}
+                                className="btn-delete"
+                            >
+                                Review
+                            </button>
                         </div>
                         <div className="file-actions">
                             <button
