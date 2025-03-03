@@ -1,0 +1,16 @@
+.review-result {
+    /* margin-top: 20px; */
+    padding: 10px;
+    height: 66.5vh;
+    /* border: 1px solid #ccc; */
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.review-result h4 {
+    margin-bottom: 10px;
+}
+
+.review-result p {
+    white-space: pre-wrap; /* Preserve whitespace and line breaks */
+}

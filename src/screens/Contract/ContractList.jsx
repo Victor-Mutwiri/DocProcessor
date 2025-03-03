@@ -4,9 +4,8 @@ import '../../styles/FileList.css';
 import { API_BASE_URL } from '../../config/config';
 import PropTypes from 'prop-types'
 
-const ContractList = ({sessionId}) => {
+const ContractList = ({sessionId, setReview}) => {
     const [files, setFiles] = useState([]);
-    const [review, setReview] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
@@ -53,20 +52,18 @@ const ContractList = ({sessionId}) => {
         }
     };
 
-    const handleReview = async (filename) => {
+    const handleReview = async () => {
         setLoading(true);
         setError('');
         setReview('');
-    
+
         try {
             const response = await fetch(`${API_BASE_URL}/api/review-contract`, {
                 method: 'POST',
                 headers: {
                     'Session-Id': sessionId,
-                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ filename }),
-                credentials: 'include',
+                credentials: 'include', // Include credentials (cookies) in the request
             });
             const data = await response.json();
             if (response.ok) {
@@ -81,8 +78,6 @@ const ContractList = ({sessionId}) => {
         } finally {
             setLoading(false);
         }
-        console.log(filename)
-        console.log(JSON.stringify({ filename }));
     };
 
     console.log('sessionId in Contract List is:', sessionId)
@@ -120,7 +115,8 @@ const ContractList = ({sessionId}) => {
 };
 
 ContractList.propTypes = {
-    sessionId: PropTypes.string.isRequired
+    sessionId: PropTypes.string.isRequired,
+    setReview: PropTypes.func.isRequired
 }
 
 export default ContractList;
