@@ -12,6 +12,7 @@ import FileUpload from '../../components/FileManagement/FileUpload'
 import ChatSection from '../../components/Chat/ChatSection'
 import Logout from '../../components/Logout/Logout'
 import UserAuth from '../User/UserAuth'
+import FeaturesNav from '../../components/FeaturesNav/FeaturesNav'
 
 const MainScreen = ({sessionId, onLogout}) => {
     const navigate = useNavigate()
@@ -25,17 +26,17 @@ const MainScreen = ({sessionId, onLogout}) => {
 
     return (
         <div className="mainScreen">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <h1 className="text-3xl font-bold mb-5 text-center">
                     Sheria Aide
                 </h1>
-                <div style={{ display: 'flex', gap: '1rem' }}>
+                {/* <div style={{ display: 'flex', gap: '1rem' }}>
                     <DarkModeToggle />
                     <Logout onLogout={onLogout} />
                     <a href="/contract-review" className="text-blue-500">Contracts</a>
-                </div>
-                
+                </div> */} 
             </div>
+            <FeaturesNav />
             {/* <DocumentAnalysis /> */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', gap: '1rem' }}>
                 <div className='fileManagement' style={{ display: 'flex', flexDirection: 'column', gap: '1rem', justifyContent: 'flex-start' }}>

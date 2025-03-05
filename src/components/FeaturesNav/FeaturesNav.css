@@ -1,0 +1,33 @@
+.features-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 60px;
+}
+.features-nav ul{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.features-nav ul li{
+    margin-right: 20px;
+}
+.features-nav ul li a{
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+}
+.features-nav ul li a.active{
+    color: #007bff;
+    font-weight: bold;
+}
+
+.features-nav__right{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}

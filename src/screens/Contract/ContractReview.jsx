@@ -4,14 +4,17 @@ import ContractUpload from '../../components/ContractUpload/ContractUpload';
 import ContractList from './ContractList';
 import ReviewResult from './ReviewResult';
 import { useState } from 'react';
+import FeaturesNav from '../../components/FeaturesNav/FeaturesNav';
 
 const ContractReview = ({sessionId}) => {
   const [review, setReview] = useState('');
   const [loading, setLoading] = useState(false);
   return (
     <div className="contract-review">
-      <h2>Contract Review</h2>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0 2rem' }}>
+      <h1 className="text-3xl font-bold mb-5 text-center">
+        Contract Review
+      </h1>
+      {/* <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0 2rem' }}>
           <h1 className="text-3xl font-bold mb-5 text-center">
               Contract Review
           </h1>
@@ -20,7 +23,8 @@ const ContractReview = ({sessionId}) => {
               <a href="/main">Home</a>
             </button>
           </div>
-      </div>
+      </div> */}
+      <FeaturesNav />
       <div className='contract-review-container'>
         <section className='contract-files'>
           <ContractUpload sessionId={sessionId} />
