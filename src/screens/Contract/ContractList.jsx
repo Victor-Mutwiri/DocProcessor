@@ -94,9 +94,10 @@ const ContractList = ({sessionId, setReview}) => {
                         <div className="file-actions">
                             <button
                                 onClick={() => handleReview(file.filename)}
-                                className="btn-delete"
+                                className="btn-review"
+                                disabled={loading}
                             >
-                                Review
+                                {loading ? 'Reviewing...' : 'Review'}
                             </button>
                         </div>
                         <div className="file-actions">
@@ -110,6 +111,8 @@ const ContractList = ({sessionId, setReview}) => {
                     </div>
                 ))}
             </div>
+            {loading && <p className="loading">Reviewing Contract</p>}
+            {error && <div className="error">{error}</div>}
         </div>
     );
 };

@@ -25,6 +25,7 @@
     padding: 1rem;
     border: 1px solid #e5e7eb;
     border-radius: 0.375rem;
+    gap: 1rem;
 }
 
 .file-info {
@@ -50,8 +51,18 @@
     color: #ef4444;
 }
 
+.btn-review {
+    color: #ef4444;
+}
+
 .btn-summary:hover,
+.btn-review:hover,
 .btn-compare:hover,
 .btn-delete:hover {
     opacity: 0.8;
 } 
+
+.loading{
+    color: #007bff;
+    font-weight: bold;
+}

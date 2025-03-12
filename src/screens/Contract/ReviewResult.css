@@ -1,10 +1,11 @@
 .review-result {
     /* margin-top: 20px; */
     padding: 10px;
-    height: 66.5vh;
+    min-height: 66.5vh;
     /* border: 1px solid #ccc; */
     border-radius: 5px;
-    background-color: #fff;
+    background-color: var(--bg-white);
+    white-space: pre-wrap;
 }
 
 .review-result h4 {
@@ -12,5 +13,13 @@
 }
 
 .review-result p {
-    white-space: pre-wrap; /* Preserve whitespace and line breaks */
+    text-align: left;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    --text-primary: #111827;
+}
+
+.review-result strong {
+    font-weight: bold;
+    --text-primary: #111827;
 }
