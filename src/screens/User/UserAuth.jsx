@@ -19,10 +19,13 @@ const UserAuth = ({ onLogin }) => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Origin': window.location.origin  // Add this line
                 },
                 body: JSON.stringify({ name, password }),
-                credentials: 'include',
+                credentials: 'include',  // This is important
+                mode: 'cors'  // Explicitly set CORS mode
             });
+            
             const data = await response.json();
             if (response.ok) {
                 onLogin(data.session_id);
@@ -30,7 +33,8 @@ const UserAuth = ({ onLogin }) => {
             } else {
                 setError(data.error || 'An error occurred');
             }
-        } catch {
+        } catch (error) {
+            console.error('Login error:', error);
             setError('An error occurred. Please try again.');
         }
     };
