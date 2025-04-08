@@ -3,6 +3,7 @@ import './FeaturesNav.css'
 import DarkModeToggle from '../common/DarkModeToggle';
 import Logout from '../Logout/Logout';
 import {NavLink} from 'react-router-dom';
+import Admin from '../../screens/Admin/Admin'
 
 const FeaturesNav = ({onLogout}) => {
     return (
@@ -22,6 +23,9 @@ const FeaturesNav = ({onLogout}) => {
             <div className="features-nav__right">
                 <DarkModeToggle />
                 <Logout onLogout={onLogout}/>
+                <NavLink to="/admin" activeClassName="active">
+                    Admin
+                </NavLink>
             </div>
         </nav>
     );
