@@ -36,7 +36,7 @@ const MainScreen = ({sessionId, onLogout}) => {
                     <a href="/contract-review" className="text-blue-500">Contracts</a>
                 </div> */} 
             </div>
-            <FeaturesNav />
+            <FeaturesNav onLogout={onLogout}/>
             {/* <DocumentAnalysis /> */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', gap: '1rem' }}>
                 <div className='fileManagement' style={{ display: 'flex', flexDirection: 'column', gap: '1rem', justifyContent: 'flex-start' }}>

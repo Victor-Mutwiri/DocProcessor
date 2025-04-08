@@ -64,6 +64,7 @@ const ContractUpload = ({sessionId}) => {
                 },
                 body: formData,
                 credentials: 'include', // Include credentials (cookies) in the request
+                mode: 'cors' // Explicitly set CORS mode
             })
     
             if (response.ok) {

@@ -64,6 +64,7 @@ const ContractList = ({sessionId, setReview}) => {
                     'Session-Id': sessionId,
                 },
                 credentials: 'include', // Include credentials (cookies) in the request
+                mode: 'cors' // Explicitly set CORS mode
             });
             const data = await response.json();
             if (response.ok) {

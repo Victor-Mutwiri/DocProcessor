@@ -144,6 +144,7 @@ const ChatSection = ({sessionId}) => {
                     message: inputMessage,
                     document: selectedDocument,
                 }),
+                credentials: 'include',  // This is important
             })
             const data = await response.json()
             

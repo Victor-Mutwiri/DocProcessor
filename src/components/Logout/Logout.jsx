@@ -12,27 +12,39 @@ const Logout = ({onLogout}) => {
 
     const handleLogout = async () => {
         if (window.confirm('Are you sure you want to sign out?')) {
-            setIsLoggingOut(true) // Indicate the logout process has started
+            setIsLoggingOut(true)
             try {
                 // Sign out from the backend
                 const response = await fetch(`${API_BASE_URL}/logout`, {
                     method: 'GET',
-                    credentials: 'include', // Include credentials (cookies) in the request
+                    credentials: 'include',
                 })
-                const data = await response.json()
+                
+                // First check if the response is OK
                 if (response.ok) {
-                    console.log(data.message)
-                    onLogout() // Call the onLogout function passed as a prop
-                    navigate('/') // Redirect to home page
+                    // Check if there's actually content to parse before trying to parse JSON
+                    const contentType = response.headers.get('content-type')
+                    if (contentType && contentType.includes('application/json')) {
+                        const data = await response.json()
+                        console.log(data.message)
+                    } else {
+                        console.log('Logout successful (non-JSON response)')
+                    }
+                    
+                    // Handle successful logout regardless of response format
+                    onLogout()
+                    navigate('/')
                 } else {
-                    console.error('Error signing out from backend:', data.error)
+                    // Handle error response
+                    const errorText = await response.text()
+                    console.error('Error logging out:', errorText)
                     alert('Error logging out. Please try again.')
                 }
             } catch (error) {
-                console.error('Error signing out from backend:', error)
+                console.error('Error during logout process:', error)
                 alert('An error occurred while logging out.')
             } finally {
-                setIsLoggingOut(false) // Reset the logout state
+                setIsLoggingOut(false)
             }
         }
     }
