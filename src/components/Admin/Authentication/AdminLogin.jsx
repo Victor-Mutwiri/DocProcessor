@@ -32,6 +32,7 @@ const AdminLogin = () => {
                 const expirationTime = new Date().getTime() + SESSION_EXPIRATION_MINUTES * 60 * 1000;
                 localStorage.setItem('adminSessionId', data.session_id);
                 localStorage.setItem('adminSessionExpiration', expirationTime);
+                setSessionId(data.session_id)
                 navigate('/admin'); // Redirect to admin dashboard
             } else {
                 setError(data.error || 'An error occurred');

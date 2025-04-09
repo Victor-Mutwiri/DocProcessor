@@ -7,10 +7,10 @@ import Header from '../../components/Admin/Layout/Header';
 import UserManagement from '../../components/Admin/UsersManagement/UserManagement'
 import HealthCheck from '../../components/Admin/SystemHealth/HealthCheck';
 import { getMemoryUsage as MemoryUsage } from '../../services/api';
-/* import AdminLogout from '../../components/Admin/Authentication/AdminLogout'; */
+import useAdminLogout from '../../components/Admin/Authentication/AdminLogout';
 
 const Admin = () => {
-  /* const {handleAdminLogout} = AdminLogout() */
+  const handleAdminLogout = useAdminLogout()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const Admin = () => {
     <div className="admin-container">
       <Sidebar />
       <div className="main-content">
-        <Header />
+        <Header onLogout={handleAdminLogout}/>
         <div className="content-area">
           <Routes>
             <Route path="/admin/users" element={<UserManagement />} />

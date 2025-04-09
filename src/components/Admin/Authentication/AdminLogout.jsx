@@ -1,7 +1,7 @@
 import {API_BASE_URL} from '../../../config/config'
 import { useNavigate } from 'react-router-dom';
 
-const AdminLogout = () => {
+const useAdminLogout = () => {
     const navigate = useNavigate();
 
     const handleAdminLogout = async () => {
@@ -23,7 +23,7 @@ const AdminLogout = () => {
         }
     };
 
-    return {handleAdminLogout}
+    return handleAdminLogout
 };
 
-export default AdminLogout;
+export default useAdminLogout;
