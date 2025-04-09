@@ -1,11 +1,37 @@
+import {useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
 import { Route, Routes } from 'react-router-dom';
 import Sidebar from '../../components/Admin/Layout/Sidebar';
 import Header from '../../components/Admin/Layout/Header';
-import UsersList from '../../components/Admin/UsersManagement/UsersList';
+/* import UsersList from '../../components/Admin/UsersManagement/UsersList'; */
+import UserManagement from '../../components/Admin/UsersManagement/UserManagement'
 import HealthCheck from '../../components/Admin/SystemHealth/HealthCheck';
 import { getMemoryUsage as MemoryUsage } from '../../services/api';
+/* import AdminLogout from '../../components/Admin/Authentication/AdminLogout'; */
 
 const Admin = () => {
+  /* const {handleAdminLogout} = AdminLogout() */
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const checkSession = ()=>{
+      const sessionId = localStorage.getItem('adminSessionId');
+      const sessionExpiration = localStorage.getItem('adminSessionExpiration');
+      const currentTime = new Date().getTime();
+
+      if (!sessionId || !sessionExpiration || currentTime > sessionExpiration) {
+        localStorage.remove('adminSessionId');
+        localStorage.remove('adminSessionExpiration');
+        navigate('/adminlogin')
+      }
+    }
+    checkSession()
+
+    const interval = setInterval(checkSession, 60 *1000); // Check every minute
+
+    return ()=>clearInterval(interval);
+  },[navigate])
+
   return (
     <div className="admin-container">
       <Sidebar />
@@ -13,11 +39,7 @@ const Admin = () => {
         <Header />
         <div className="content-area">
           <Routes>
-            <Route path="/admin/users" element={
-              <div className="system-health">
-                <UsersList />
-              </div>
-              } />
+            <Route path="/admin/users" element={<UserManagement />} />
             <Route
               path="/admin/system"
               element={

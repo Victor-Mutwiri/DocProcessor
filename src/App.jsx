@@ -3,6 +3,7 @@ import './styles/utilities.css'
 import './styles/App.css'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import ProtectedRoute from './components/Admin/ProtectedRoute/ProtectedRoute'
 /* import { SignIn, SignUp } from '@clerk/clerk-react' */
 import Home from './screens/Home/Home'
 import MainScreen from './screens/Main/MainScreen'
@@ -10,6 +11,7 @@ import Profile from './screens/Profile/Profile'
 import UserAuth from './screens/User/UserAuth'
 import ContractReview from './screens/Contract/ContractReview'
 import Admin from './screens/Admin/Admin'
+import AdminAuth from './screens/Admin/AdminAuth'
 /* import MainScreen from './components/screens/Main/MainScreen' */
 
 const SESSION_EXPIRATION_HOURS = 2
@@ -62,7 +64,14 @@ function App() {
         <Route path="/user" element={sessionId ? <Navigate to="/main" /> : <UserAuth onLogin={handleLogin} />} />
         <Route path="/contract-review" element={sessionId ? <ContractReview sessionId={sessionId}/> : <UserAuth onLogin={handleLogin} />} />
         {/* <Route path="/contract-review" element={<ContractReview/>} /> */}
-        <Route path="/admin/*" element={<Admin />} />
+        <Route path='/adminlogin' element={<AdminAuth/>} />
+        <Route path="/admin/*"
+          element={
+            <ProtectedRoute redirectTo="/adminlogin">
+              <Admin />
+            </ProtectedRoute>
+          }
+        />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
