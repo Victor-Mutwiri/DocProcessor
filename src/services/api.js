@@ -32,10 +32,12 @@ export const fetchUsers = async () => {
 };
 
 export const deleteUser = async (userId) => {
+  const sessionId = getSessionId();
   const response = await fetch(`${API_BASE_URL}/api/users/${userId}`, {
     method: 'DELETE',
     headers: {
-      'Session-Id': getSessionId(), // Include session ID in headers
+      'Content-Type': 'application/json', // Include session ID in headers
+      'X-Session-ID': sessionId
     },
     credentials: 'include',
   });
@@ -44,10 +46,12 @@ export const deleteUser = async (userId) => {
 };
 
 export const toggleUserStatus = async (userId) => {
+  const sessionId = getSessionId();
   const response = await fetch(`${API_BASE_URL}/api/users/${userId}/toggle-status`, {
     method: 'POST',
     headers: {
-      'Session-Id': getSessionId(), // Include session ID in headers
+      'Content-Type': 'application/json', // Include session ID in headers
+      'X-Session-ID': sessionId
     },
     credentials: 'include',
   });
