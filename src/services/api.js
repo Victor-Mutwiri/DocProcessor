@@ -2,13 +2,20 @@ import {API_BASE_URL} from '../config/config';
 
 const getSessionId = () =>localStorage.getItem('adminSessionId')
 
+
 export const fetchUsers = async () => {
   try {
+    const sessionId = getSessionId();
+    console.log('Using sessionId for API call:', sessionId);
+    if (!sessionId) {
+      throw new Error('No valid session ID found. Please log in again.');
+    }
     const response = await fetch(`${API_BASE_URL}/api/users`, {
-      headers: {
-        'Session-Id': getSessionId(), // Include session ID in headers
-      },
       credentials: 'include', // Include cookies for session
+      headers: {
+        'Content-Type': 'application/json', // Include session ID in headers
+        'X-Session-ID': sessionId
+      },
     });
 
     if (!response.ok) {
