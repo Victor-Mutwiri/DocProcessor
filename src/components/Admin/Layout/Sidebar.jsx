@@ -7,7 +7,7 @@ const Sidebar = () => {
       <nav>
         <ul>
           <li>
-            <NavLink to="/admin" exact='true' activeclassname="active">
+            <NavLink to="/admin" end activeclassname="active">
               Dashboard
             </NavLink>
           </li>
@@ -16,11 +16,11 @@ const Sidebar = () => {
               Users Management
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/admin/system" activeclassname="active">
               System Health
             </NavLink>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </div>

@@ -5,9 +5,10 @@ import Sidebar from '../../components/Admin/Layout/Sidebar';
 import Header from '../../components/Admin/Layout/Header';
 /* import UsersList from '../../components/Admin/UsersManagement/UsersList'; */
 import UserManagement from '../../components/Admin/UsersManagement/UserManagement'
-import HealthCheck from '../../components/Admin/SystemHealth/HealthCheck';
-import { getMemoryUsage as MemoryUsage } from '../../services/api';
+//import HealthCheck from '../../components/Admin/SystemHealth/HealthCheck';
+//import { getMemoryUsage as MemoryUsage } from '../../services/api';
 import useAdminLogout from '../../components/Admin/Authentication/AdminLogout';
+import Dashboard from './Dashboard';
 
 const Admin = () => {
   const handleAdminLogout = useAdminLogout()
@@ -39,25 +40,17 @@ const Admin = () => {
         <Header onLogout={handleAdminLogout}/>
         <div className="content-area">
           <Routes>
-            <Route path="/admin/users" element={<UserManagement />} />
-            <Route
-              path="/admin/system"
+            <Route index element={<Dashboard/>} />
+            <Route path="/users" element={<UserManagement />} />
+            {/* <Route
+              path="/system"
               element={
                 <div className="system-health">
                   <HealthCheck />
                   <MemoryUsage />
                 </div>
               }
-            />
-            <Route
-              path="/admin"
-              element={
-                <div className="dashboard">
-                  <h2>Admin Dashboard</h2>
-                  <p>Select a section from the sidebar to manage the system.</p>
-                </div>
-              }
-            />
+            /> */}
           </Routes>
         </div>
       </div>

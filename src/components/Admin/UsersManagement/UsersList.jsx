@@ -1,39 +1,7 @@
-import { useState, useEffect } from 'react';
-import { fetchUsers } from '../../../services/api';
+import PropTypes from 'prop-types';
 import UserActions from './UserActions';
 
-const UsersList = () => {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const loadUsers = async () => {
-      try {
-        const data = await fetchUsers();
-        setUsers(data);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-    loadUsers();
-  }, []);
-
-  const handleUserUpdate = (updatedUser) => {
-    setUsers(users.map(user => 
-      user.id === updatedUser.id ? updatedUser : user
-    ));
-  };
-
-  const handleUserDelete = (userId) => {
-    setUsers(users.filter(user => user.id !== userId));
-  };
-
-  if (loading) return <div className="loading">Loading users...</div>;
-  if (error) return <div className="error">Error: {error}</div>;
-
+const UsersList = ({ users, onStatusToggle, onDelete }) => {
   return (
     <div className="users-list">
       <h2>Users Management</h2>
@@ -75,8 +43,8 @@ const UsersList = () => {
               <td>
                 <UserActions 
                   user={user} 
-                  onStatusToggle={handleUserUpdate} 
-                  onDelete={handleUserDelete}
+                  onStatusToggle={onStatusToggle} 
+                  onDelete={onDelete}
                 />
               </td>
             </tr>
@@ -85,6 +53,12 @@ const UsersList = () => {
       </table>
     </div>
   );
+};
+
+UsersList.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onStatusToggle: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default UsersList;

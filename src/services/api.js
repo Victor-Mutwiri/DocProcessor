@@ -3,14 +3,25 @@ import {API_BASE_URL} from '../config/config';
 const getSessionId = () =>localStorage.getItem('adminSessionId')
 
 export const fetchUsers = async () => {
-  const response = await fetch(`${API_BASE_URL}/api/users`, {
-    headers: {
-      'Session-Id': getSessionId(), // Include session ID in headers
-    },
-    credentials: 'include', // Include cookies for session
-  });
-  if (!response.ok) throw new Error('Failed to fetch users');
-  return await response.json();
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/users`, {
+      headers: {
+        'Session-Id': getSessionId(), // Include session ID in headers
+      },
+      credentials: 'include', // Include cookies for session
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to fetch users');
+    }
+    const data = await response.json();
+    console.log('Fetched users:', data)
+    return data;
+  } catch (error) {
+    console.error('Error fetching users:', error.message);
+    throw error;
+  }
 };
 
 export const deleteUser = async (userId) => {

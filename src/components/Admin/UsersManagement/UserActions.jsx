@@ -1,4 +1,5 @@
-import { deleteUser, toggleUserStatus } from "../../../services/api";
+import PropTypes from 'prop-types';
+import { deleteUser, toggleUserStatus } from '../../../services/api';
 
 const UserActions = ({ user, onStatusToggle, onDelete }) => {
   const handleToggleStatus = async () => {
@@ -34,6 +35,12 @@ const UserActions = ({ user, onStatusToggle, onDelete }) => {
       </button>
     </div>
   );
+};
+
+UserActions.propTypes = {
+  user: PropTypes.object.isRequired,
+  onStatusToggle: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default UserActions;
