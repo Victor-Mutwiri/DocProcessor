@@ -50,12 +50,17 @@ export const toggleUserStatus = async (userId) => {
   const response = await fetch(`${API_BASE_URL}/api/users/${userId}/toggle-status`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json', // Include session ID in headers
+      'Content-Type': 'application/json',
       'X-Session-ID': sessionId
     },
     credentials: 'include',
   });
-  if (!response.ok) throw new Error('Failed to toggle user status');
+  
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error || 'Failed to toggle user status');
+  }
+  
   return await response.json();
 };
 

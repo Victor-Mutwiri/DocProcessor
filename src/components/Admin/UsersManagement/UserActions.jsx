@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import { deleteUser, toggleUserStatus } from '../../../services/api';
 
-const UserActions = ({ user, onStatusToggle, onDelete }) => {
+const UserActions = ({ user, onRefreshUsers }) => {
   const handleToggleStatus = async () => {
     try {
-      const updatedUser = await toggleUserStatus(user.id);
-      onStatusToggle(updatedUser);
+      await toggleUserStatus(user.id);
+      onRefreshUsers(); // Refresh the user list after toggling status
     } catch (error) {
       alert(error.message);
     }
@@ -15,20 +15,22 @@ const UserActions = ({ user, onStatusToggle, onDelete }) => {
     if (window.confirm(`Are you sure you want to delete ${user.name}?`)) {
       try {
         await deleteUser(user.id);
-        onDelete(user.id);
+        onRefreshUsers(); // Refresh the user list after deleting a user
       } catch (error) {
         alert(error.message);
       }
     }
   };
 
+  const actionLabel = user.is_active? 'Deactivate':'Activate';
+
   return (
     <div className="user-actions">
-      <button 
+      <button
         onClick={handleToggleStatus}
         className={user.is_active ? 'btn-warning' : 'btn-success'}
       >
-        {user.is_active ? 'Deactivate' : 'Activate'}
+        {actionLabel}
       </button>
       <button onClick={handleDelete} className="btn-danger">
         Delete
@@ -39,8 +41,7 @@ const UserActions = ({ user, onStatusToggle, onDelete }) => {
 
 UserActions.propTypes = {
   user: PropTypes.object.isRequired,
-  onStatusToggle: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
+  onRefreshUsers:PropTypes.func.isRequired,
 };
 
 export default UserActions;

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import UserActions from './UserActions';
 
-const UsersList = ({ users, onStatusToggle, onDelete }) => {
+const UsersList = ({ users, onRefreshUsers }) => {
   return (
     <div className="users-list">
       <h2>Users Management</h2>
@@ -21,7 +21,7 @@ const UsersList = ({ users, onStatusToggle, onDelete }) => {
             <tr key={user.id}>
               <td>{user.id}</td>
               <td>{user.name}</td>
-              <td>{user.is_active ? 'Active' : 'Inactive'}</td>
+              <td>{user.status || (user.is_active ? 'Active' : 'Inactive')}</td>
               <td>
                 {user.files.length > 0 ? (
                   <ul>
@@ -43,8 +43,7 @@ const UsersList = ({ users, onStatusToggle, onDelete }) => {
               <td>
                 <UserActions 
                   user={user} 
-                  onStatusToggle={onStatusToggle} 
-                  onDelete={onDelete}
+                  onRefreshUsers={onRefreshUsers}
                 />
               </td>
             </tr>
@@ -57,8 +56,7 @@ const UsersList = ({ users, onStatusToggle, onDelete }) => {
 
 UsersList.propTypes = {
   users: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onStatusToggle: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
+  onRefreshUsers:PropTypes.func.isRequired,
 };
 
 export default UsersList;

@@ -7,31 +7,25 @@ const UserManagement = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  
+  const refreshUsers= async()=>{
+    setLoading(true);
+    setError(null);
+    try{
+      const data = await fetchUsers();
+      setUsers(data);
+    } catch (err){
+      setError(err.message);
+    }finally{
+      setLoading(false)
+    }
+  }
+
+  
   useEffect(() => {
-    const loadUsers = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const data = await fetchUsers();
-        setUsers(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadUsers();
+    refreshUsers();
   }, []);
 
-  const handleStatusToggle = (updatedUser) => {
-    setUsers(users.map(user => 
-      user.id === updatedUser.id ? updatedUser : user
-    ));
-  };
-
-  const handleDelete = (userId) => {
-    setUsers(users.filter(user => user.id !== userId));
-  };
 
   if (loading) return <div className="loading">Loading users...</div>;
   if (error) return <div className="error">Error: {error}</div>;
@@ -41,8 +35,7 @@ const UserManagement = () => {
       <h2>Users Management</h2>
       <UsersList
         users={users}
-        onStatusToggle={handleStatusToggle}
-        onDelete={handleDelete}
+        onRefreshUsers={refreshUsers}
       />
     </div>
   );
