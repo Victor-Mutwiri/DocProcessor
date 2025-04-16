@@ -64,6 +64,37 @@ export const toggleUserStatus = async (userId) => {
   return await response.json();
 };
 
+export const getSummary = async () => {
+  try {
+    const sessionId = getSessionId();
+    console.log('Using sessionId for summary API call:', sessionId);
+    if (!sessionId) {
+      throw new Error('No valid session ID found. Please log in again.');
+    }
+
+    const response = await fetch(`${API_BASE_URL}/api/summary`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json', // Include session ID in headers
+        'X-Session-ID': sessionId
+      },
+      credentials: 'include', // Include cookies for session
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to fetch summary');
+    }
+
+    const data = await response.json();
+    console.log('Fetched summary:', data);
+    return data;
+  } catch (error) {
+    console.error('Error fetching summary:', error.message);
+    throw error;
+  }
+};
+
 export const checkHealth = async () => {
   const response = await fetch(`${API_BASE_URL}/api/health-check`, {
     headers: {

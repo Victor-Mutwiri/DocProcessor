@@ -4,7 +4,6 @@ import UserActions from './UserActions';
 const UsersList = ({ users, onRefreshUsers }) => {
   return (
     <div className="users-list">
-      <h2>Users Management</h2>
       <table>
         <thead>
           <tr>
