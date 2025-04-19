@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../../config/config';
 import PropTypes from 'prop-types';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './UserAuth.css';
 
 const UserLogin = ({ onLogin }) => {
@@ -26,8 +28,19 @@ const UserLogin = ({ onLogin }) => {
 
             const data = await response.json();
             if (response.ok) {
+                toast.success('Login successful!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
                 onLogin(data.session_id);
-                navigate('/main');
+                setTimeout(() => {
+                    navigate('/main');
+                }, 5000);
             } else {
                 setError(data.error || 'An error occurred');
             }
@@ -39,6 +52,7 @@ const UserLogin = ({ onLogin }) => {
 
     return (
         <div className="auth-container">
+            <ToastContainer />
             <div className="welcome-section">
                 <h2>Welcome Back</h2>
                 <p>Please log in to continue.</p>

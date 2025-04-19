@@ -36,7 +36,6 @@ const UserRegister = () => {
                     draggable: true,
                     progress: undefined,
                 });
-
                 setTimeout(() => {
                     navigate('/main');
                 }, 5000);
