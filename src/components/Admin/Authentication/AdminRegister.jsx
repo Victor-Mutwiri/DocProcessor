@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../../../config/config';
-import '../../../screens/User/UserAuth.css';
+import {toast, ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './AdminAuth.css'
 
 const AdminRegister = () => {
     const [name, setName] = useState('');
@@ -25,7 +27,19 @@ const AdminRegister = () => {
 
             const data = await response.json();
             if (response.ok) {
-                navigate('/admin');
+                toast.success('Account registered successfully! Please log in.', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                // Redirect to login after a short delay
+                setTimeout(() => {
+                    navigate('/admin');
+                }, 5000);
             } else {
                 setError(data.error || 'An error occurred');
             }
@@ -36,10 +50,10 @@ const AdminRegister = () => {
     };
 
     return (
-        <div className="userAuth">
-            <div className="auth-container">
+            <div className="auth-containerz">
+                <ToastContainer />
                 <div className="welcome-section">
-                    <h2>Welcome, Admin</h2>
+                    {/* <h2>Welcome back, Admin</h2> */}
                     <p>Please register to continue.</p>
                 </div>
                 <form onSubmit={handleRegister} className="auth-form">
@@ -63,7 +77,6 @@ const AdminRegister = () => {
                 </form>
                 {error && <p className="error-message">{error}</p>}
             </div>
-        </div>
     );
 };
 

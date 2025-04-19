@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../../../config/config';
-import '../../../screens/User/UserAuth.css';
+/* import '../../../screens/User/UserAuth.css'; */
+import './AdminAuth.css'
 
 
 const SESSION_EXPIRATION_MINUTES = 30;
@@ -46,10 +47,9 @@ const AdminLogin = () => {
     console.log('sessionId in AdminLogin is:', sessionId);
 
     return (
-        <div className="userAuth">
-            <div className="auth-container">
+            <div className="auth-containerz">
                 <div className="welcome-section">
-                    <h2>Welcome back, Admin</h2>
+                    {/* <h2>Welcome back, Admin</h2> */}
                     <p>Please log in to continue.</p>
                 </div>
                 <form onSubmit={handleLogin} className="auth-form">
@@ -73,7 +73,6 @@ const AdminLogin = () => {
                 </form>
                 {error && <p className="error-message">{error}</p>}
             </div>
-        </div>
     );
 };
 

@@ -1,5 +1,5 @@
-import {useState, useEffect} from 'react'
-import {getSummary} from '../../services/api'
+import {useState, useEffect} from 'react';
+import {getSummary} from '../../services/api';
 import { FaUsers, FaFileAlt, FaFileContract } from 'react-icons/fa';
 import styled from 'styled-components';
 import { Bar } from 'react-chartjs-2';
@@ -67,7 +67,7 @@ const ChartContainer = styled.div`
   background: #fff;
   border: 1px solid #dee2e6;
   border-radius: 8px;
-  padding: 20px;
+  padding: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
@@ -132,39 +132,39 @@ const Dashboard = ()=> {
             <h2>Admin Dashboard</h2>
             <SummaryCards>
                 <Card>
-                <CardIcon>
-                    <FaFileAlt />
-                </CardIcon>
-                <CardTitle>Total Files</CardTitle>
-                <CardValue>{summary.total_files}</CardValue>
+                  <CardIcon>
+                      <FaFileAlt />
+                  </CardIcon>
+                  <CardTitle>Total Files</CardTitle>
+                  <CardValue>{summary.total_files}</CardValue>
                 </Card>
                 <Card>
-                <CardIcon>
-                    <FaFileContract />
-                </CardIcon>
-                <CardTitle>Total Contracts</CardTitle>
-                <CardValue>{summary.total_contracts}</CardValue>
+                  <CardIcon>
+                      <FaFileContract />
+                  </CardIcon>
+                  <CardTitle>Total Contracts</CardTitle>
+                  <CardValue>{summary.total_contracts}</CardValue>
                 </Card>
                 <Card>
-                <CardIcon>
-                    <FaUsers />
-                </CardIcon>
-                <CardTitle>Total Users</CardTitle>
-                <CardValue>{summary.total_users}</CardValue>
+                  <CardIcon>
+                      <FaUsers />
+                  </CardIcon>
+                  <CardTitle>Total Users</CardTitle>
+                  <CardValue>{summary.total_users}</CardValue>
                 </Card>
                 <Card>
-                <CardIcon>
-                    <FaUsers />
-                </CardIcon>
-                <CardTitle>Active Users</CardTitle>
-                <CardValue>{summary.active_users}</CardValue>
+                  <CardIcon>
+                      <FaUsers />
+                  </CardIcon>
+                  <CardTitle>Active Users</CardTitle>
+                  <CardValue>{summary.active_users}</CardValue>
                 </Card>
                 <Card>
-                <CardIcon>
-                    <FaUsers />
-                </CardIcon>
-                <CardTitle>Inactive Users</CardTitle>
-                <CardValue>{summary.inactive_users}</CardValue>
+                  <CardIcon>
+                      <FaUsers />
+                  </CardIcon>
+                  <CardTitle>Inactive Users</CardTitle>
+                  <CardValue>{summary.inactive_users}</CardValue>
                 </Card>
             </SummaryCards>
             <ChartContainer>
@@ -175,4 +175,4 @@ const Dashboard = ()=> {
     )
 }
 
-export default Dashboard
+export default Dashboard;

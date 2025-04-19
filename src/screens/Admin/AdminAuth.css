@@ -1,0 +1,31 @@
+/* .userAuth{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://i.pinimg.com/736x/de/8e/54/de8e54c48411c0d338243abfe79be16c.jpg');
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+} */
+.usersAuth{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('https://i.pinimg.com/736x/de/8e/54/de8e54c48411c0d338243abfe79be16c.jpg');
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+.auth-containers{
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    color: #333;
+}
+.welcome-section {
+    text-align: center;
+    margin-bottom: 20px;
+}

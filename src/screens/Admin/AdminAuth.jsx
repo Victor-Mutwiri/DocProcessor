@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import AdminLogin from '../../components/Admin/Authentication/AdminLogin';
 import AdminRegister from '../../components/Admin/Authentication/AdminRegister';
+import './AdminAuth.css';
 
 const AdminAuth = () => {
     const [isLoginMode, setIsLoginMode] = useState(true);
 
     return (
-        <div className="userAuth">
-            <div className="auth-container">
+        <div className="usersAuth">
+            <div className="auth-containers">
                 <div className="welcome-section">
                     <h2>Welcome, Admin</h2>
-                    <p>Please {isLoginMode ? 'log in' : 'register'} to continue.</p>
+                    {/* <p>Please {isLoginMode ? 'log in' : 'register'} to continue.</p> */}
                 </div>
                 <div className="auth-toggle">
                     <button
