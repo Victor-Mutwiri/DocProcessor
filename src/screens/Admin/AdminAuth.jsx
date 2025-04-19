@@ -8,6 +8,12 @@ const AdminAuth = () => {
 
     return (
         <div className="usersAuth">
+            <div className="home-btn">
+                <div></div>
+                <a href="/main" className="home-link">
+                    <i className="fas fa-home home"></i> Home
+                </a>
+            </div>
             <div className="auth-containers">
                 <div className="welcome-section">
                     <h2>Welcome, Admin</h2>
