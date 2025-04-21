@@ -12,6 +12,7 @@ import UserAuth from './screens/User/UserAuth'
 import ContractReview from './screens/Contract/ContractReview'
 import Admin from './screens/Admin/Admin'
 import AdminAuth from './screens/Admin/AdminAuth'
+import UserRecovery from './screens/User/UserRecovery'
 /* import MainScreen from './components/screens/Main/MainScreen' */
 
 const SESSION_EXPIRATION_HOURS = 2
@@ -65,6 +66,7 @@ function App() {
         <Route path="/contract-review" element={sessionId ? <ContractReview sessionId={sessionId}/> : <UserAuth onLogin={handleLogin} />} />
         {/* <Route path="/contract-review" element={<ContractReview/>} /> */}
         <Route path='/adminlogin' element={<AdminAuth/>} />
+        <Route path='/recovery' element={<UserRecovery/>} />
         <Route path="/admin/*"
           element={
             <ProtectedRoute redirectTo="/adminlogin">

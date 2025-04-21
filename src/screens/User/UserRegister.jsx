@@ -6,13 +6,35 @@ import 'react-toastify/dist/ReactToastify.css';
 import './UserAuth.css';
 
 const UserRegister = () => {
-    const [name, setName] = useState('');
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordHint, setPasswordHint] = useState('');
     const [error, setError] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate();
+
+    const isPasswordStrong = (password) => {
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()\-_=+])[A-Za-z\d@$!%*?&#^()\-_=+]{6,}$/;
+        return regex.test(password);
+    };
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        if (!isPasswordStrong(password)) {
+            toast.error('Password is weak. It should be at least 6 characters and include 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return;
+        }
+
+        setIsSubmitting(true);
         try {
             const response = await fetch(`${API_BASE_URL}/register`, {
                 method: 'POST',
@@ -20,7 +42,12 @@ const UserRegister = () => {
                     'Content-Type': 'application/json',
                     'Origin': window.location.origin,
                 },
-                body: JSON.stringify({ name, password }),
+                body: JSON.stringify({
+                    username, 
+                    email, 
+                    password, 
+                    password_hint: passwordHint
+                }),
                 credentials: 'include',
                 mode: 'cors',
             });
@@ -53,14 +80,21 @@ const UserRegister = () => {
             <ToastContainer />
             <div className="welcome-section">
                 <h2>Create an Account</h2>
-                <p>Please register to continue.</p>
+                <p>Please Signup to continue.</p>
             </div>
             <form onSubmit={handleRegister} className="auth-form">
                 <input
                     type="text"
-                    placeholder="Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                />
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                 />
                 <input
@@ -70,8 +104,15 @@ const UserRegister = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                <button type="submit" className="submit-btn">
-                    Sign Up
+                <input
+                    type="text"
+                    placeholder="Password Hint"
+                    value={passwordHint}
+                    onChange={(e) => setPasswordHint(e.target.value)}
+                    required
+                />
+                <button type="submit" className="submit-btn" disabled={isSubmitting}>
+                    {isSubmitting ? 'Signing Up...' : 'Sign Up'}
                 </button>
             </form>
             {error && <p className="error-message">{error}</p>}

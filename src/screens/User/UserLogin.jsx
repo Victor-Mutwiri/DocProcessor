@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { API_BASE_URL } from '../../config/config';
 import PropTypes from 'prop-types';
 import { toast, ToastContainer } from 'react-toastify';
@@ -77,6 +77,10 @@ const UserLogin = ({ onLogin }) => {
                 </button>
             </form>
             {error && <p className="error-message">{error}</p>}
+            {/* Forgot Password Section */}
+            <div className="forgot-password">
+                <p><Link to="/recovery">Forgot your password?</Link></p>
+            </div>
         </div>
     );
 };
