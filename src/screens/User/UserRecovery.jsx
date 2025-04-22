@@ -7,7 +7,7 @@ import './UserAuth.css';
 const UserRecovery = () => {
     const [email, setEmail] = useState('');
     const [passwordHint, setPasswordHint] = useState('');
-    const [recoveredPassword, setRecoveredPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
     const [timer, setTimer] = useState(null);
     const [timeLeft, setTimeLeft] = useState(0);
 
@@ -27,11 +27,22 @@ const UserRecovery = () => {
 
             const data = await response.json();
             if (response.ok) {
-                setRecoveredPassword(data.password);
-                setTimeLeft(10); // Set timer for 10 seconds
+                setNewPassword(data.new_password);
+                setTimeLeft(30); // Set timer for 10 seconds
                 toast.success('Password recovered successfully! Keep it secret.', {
                     position: 'top-right',
                     autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+
+                // Notify the user to remember the password and update it in their profile
+                toast.info('Please remember this password. You will need it to log in and update it in your profile settings.', {
+                    position: 'top-right',
+                    autoClose: 10000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -44,7 +55,7 @@ const UserRecovery = () => {
                     setTimeLeft((prev) => {
                         if (prev <= 1) {
                             clearInterval(countdown);
-                            setRecoveredPassword('');
+                            setNewPassword('');
                             return 0;
                         }
                         return prev - 1;
@@ -77,10 +88,10 @@ const UserRecovery = () => {
     };
 
     const handleCopyPassword = () => {
-        navigator.clipboard.writeText(recoveredPassword);
+        navigator.clipboard.writeText(newPassword);
         toast.info('Password copied to clipboard!', {
             position: 'top-right',
-            autoClose: 3000,
+            autoClose: 6000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -90,7 +101,7 @@ const UserRecovery = () => {
     };
 
     return (
-        <div className="auth-container">
+        <div className="userAuth">
             <ToastContainer />
             <div className="welcome-section">
                 <h2>Password Recovery</h2>
@@ -115,10 +126,10 @@ const UserRecovery = () => {
                     Recover Password
                 </button>
             </form>
-            {recoveredPassword && (
+            {newPassword && (
                 <div className="recovered-password-popup">
                     <p>
-                        <strong>Password:</strong> {recoveredPassword}
+                        <strong>New Password:</strong> {newPassword}
                     </p>
                     <button onClick={handleCopyPassword} className="copy-btn">
                         Copy Password

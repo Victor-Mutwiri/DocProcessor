@@ -1,17 +1,105 @@
 .profile-container{
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     /* margin-top: 2rem; */
     background-color: white;
 }
 
-.profile-container .close-btn{
+/* .profile-container .close-btn{
     position: absolute;
     top: 1rem;
     right: 2rem;
     font-size: 1.3rem;
     color: #007bff;
     cursor: pointer;
+} */
+
+
+/* .profile-container {
+    display: flex;
+    min-height: 100vh;
+} */
+
+.profile-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.profile-main-content {
+    padding: 20px;
+    flex: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.password-change-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.password-change-container h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.password-change-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.password-change-form input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.password-change-form .submit-btn {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.password-change-form .submit-btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.password-change-form .submit-btn:hover:not(:disabled) {
+    background-color: #0056b3;
 }

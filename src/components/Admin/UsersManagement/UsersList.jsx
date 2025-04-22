@@ -9,6 +9,7 @@ const UsersList = ({ users, onRefreshUsers }) => {
           <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Hint</th>
             <th>Status</th>
             <th>Files</th>
             <th>Contracts</th>
@@ -19,7 +20,8 @@ const UsersList = ({ users, onRefreshUsers }) => {
           {users.map(user => (
             <tr key={user.id}>
               <td>{user.id}</td>
-              <td>{user.name}</td>
+              <td>{user.username}</td>
+              <td>{user.password_hint}</td>
               <td>{user.status || (user.is_active ? 'Active' : 'Inactive')}</td>
               <td>
                 {user.files.length > 0 ? (

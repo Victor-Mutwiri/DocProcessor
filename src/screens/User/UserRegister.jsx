@@ -67,11 +67,25 @@ const UserRegister = () => {
                     navigate('/main');
                 }, 5000);
             } else {
-                setError(data.error || 'An error occurred');
+                if (data.error === 'This email is already registered. Please log in instead.') {
+                    toast.error(data.error, {
+                        position: 'top-right',
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                } else {
+                    setError(data.error || 'An error occurred');
+                }
             }
         } catch (error) {
             console.error('Registration error:', error);
             setError('An error occurred. Please try again.');
+        } finally {
+            setIsSubmitting(false);
         }
     };
 

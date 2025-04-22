@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './UserAuth.css';
 
 const UserLogin = ({ onLogin }) => {
-    const [name, setName] = useState('');
+    const [username, setName] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ const UserLogin = ({ onLogin }) => {
                     'Content-Type': 'application/json',
                     'Origin': window.location.origin,
                 },
-                body: JSON.stringify({ name, password }),
+                body: JSON.stringify({ username, password }),
                 credentials: 'include',
                 mode: 'cors',
             });
@@ -61,7 +61,7 @@ const UserLogin = ({ onLogin }) => {
                 <input
                     type="text"
                     placeholder="Name"
-                    value={name}
+                    value={username}
                     onChange={(e) => setName(e.target.value)}
                     required
                 />
