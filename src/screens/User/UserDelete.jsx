@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../../config/config';
+import PropTypes from 'prop-types'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './UserDelete.css';
+import './UserAuth.css';
 
-const UserDelete = () => {
+const UserDelete = ({sessionId}) => {
     const [isConfirming, setIsConfirming] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const navigate = useNavigate();
@@ -13,7 +14,6 @@ const UserDelete = () => {
     const handleDeleteAccount = async () => {
         setIsDeleting(true);
         try {
-            const sessionId = localStorage.getItem('userSessionId');
             if (!sessionId) {
                 throw new Error('Unauthorized: No session ID found.');
             }
@@ -113,5 +113,9 @@ const UserDelete = () => {
         </div>
     );
 };
+
+UserDelete.propTypes = {
+    sessionId: PropTypes.string.isRequired,
+}
 
 export default UserDelete;

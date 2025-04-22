@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../../config/config';
-import { toast, ToastContainer } from 'react-toastify';
+import PropTypes from 'prop-types'
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './UserAuth.css';
 
-const UserDashboard = () => {
+const UserDashboard = ({sessionId}) => {
     const [accountSummary, setAccountSummary] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -14,7 +15,6 @@ const UserDashboard = () => {
             setLoading(true);
             setError(null);
             try {
-                const sessionId = localStorage.getItem('userSessionId');
                 if (!sessionId) {
                     throw new Error('Unauthorized: No session ID found.');
                 }
@@ -99,5 +99,9 @@ const UserDashboard = () => {
         </div>
     );
 };
+
+UserDashboard.propTypes = {
+    sessionId: PropTypes.string.isRequired,
+}
 
 export default UserDashboard;

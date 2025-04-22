@@ -5,16 +5,18 @@ import './Profile.css'
 import PasswordChange from './Passwordchange'
 import ProfileSidebar from "../../components/UserProfile/ProfileSidebar"
 import ProfileHeader from "../../components/UserProfile/ProfileHeader"
+import UserDashboard from "../User/UserDashboard"
+import UserDelete from "../User/UserDelete"
 
 const Profile = ({sessionId}) => {
   const navigate = useNavigate()
 
-    /* useEffect(() => {
+    useEffect(() => {
         if (!sessionId) {
             navigate('/user')
         }
     }, [sessionId, navigate])
-    console.log ('The sessionId in profilescreen is:', sessionId) */
+    console.log ('The sessionId in profilescreen is:', sessionId)
 
   return (
     <div className="profile-container">
@@ -23,9 +25,9 @@ const Profile = ({sessionId}) => {
         <ProfileHeader/>
         <div className="profile-main-content">
           <Routes>
-            {/* <Route index element={< />} /> */}
+            <Route index element={< UserDashboard sessionId={sessionId} />} />
             <Route path="/passwords" element={<PasswordChange />} />
-            {/* Add more routes as needed */}
+            <Route path="/account" element={<UserDelete sessionId={sessionId}/>} />
           </Routes>
         </div>
       </div>
