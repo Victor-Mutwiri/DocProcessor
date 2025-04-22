@@ -6,7 +6,7 @@ import ReviewResult from './ReviewResult';
 import { useState } from 'react';
 import FeaturesNav from '../../components/FeaturesNav/FeaturesNav';
 
-const ContractReview = ({sessionId}) => {
+const ContractReview = ({sessionId, onLogout}) => {
   const [review, setReview] = useState('');
   const [loading, setLoading] = useState(false);
   return (
@@ -24,7 +24,7 @@ const ContractReview = ({sessionId}) => {
             </button>
           </div>
       </div> */}
-      <FeaturesNav />
+      <FeaturesNav onLogout={onLogout}/>
       <div className='contract-review-container'>
         <section className='contract-files'>
           <ContractUpload sessionId={sessionId} />
@@ -40,7 +40,8 @@ const ContractReview = ({sessionId}) => {
 };
 
 ContractReview.propTypes = {
-    sessionId: PropTypes.string.isRequired
+    sessionId: PropTypes.string.isRequired,
+    onLogout: PropTypes.func.isRequired
 }
 
 export default ContractReview;
