@@ -59,7 +59,7 @@ function App() {
         {/* <Route path="/sign-in/*" element={<SignIn routing="path" path="/sign-in" />} /> */}
         {/* <Route path="/sign-up/*" element={<SignUp routing="path" path="/sign-up" />} /> */}
         {/* <Route path="/profile/*" element={<Profile/>} /> */}
-        <Route path="/profile/*" element={sessionId ?<Profile sessionId={sessionId} /> : <UserAuth onLogin={handleLogin} />} />
+        <Route path="/profile/*" element={sessionId ?<Profile sessionId={sessionId} onLogout={handleLogout}/> : <UserAuth onLogin={handleLogin} />} />
         {/* <Route path="/main" element={<MainScreen sessionId={sessionId} />} /> */}
         <Route path="/main" element={<MainScreen sessionId={sessionId} onLogout={handleLogout} />} />
         {/* <Route path='/user' element={<UserAuth onLogin={handleLogin}/>} /> */}

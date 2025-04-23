@@ -8,7 +8,7 @@ import ProfileHeader from "../../components/UserProfile/ProfileHeader"
 import UserDashboard from "../User/UserDashboard"
 import UserDelete from "../User/UserDelete"
 
-const Profile = ({sessionId}) => {
+const Profile = ({sessionId, onLogout}) => {
   const navigate = useNavigate()
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const Profile = ({sessionId}) => {
     <div className="profile-container">
       <ProfileSidebar/>
       <div className="profile-content">
-        <ProfileHeader/>
+        <ProfileHeader onLogout={onLogout}/>
         <div className="profile-main-content">
           <Routes>
             <Route index element={< UserDashboard sessionId={sessionId} />} />
@@ -37,6 +37,7 @@ const Profile = ({sessionId}) => {
 
 Profile.propTypes = {
     sessionId: PropTypes.string.isRequired,
+    onLogout: PropTypes.func.isRequired
 }
 
 export default Profile

@@ -39,8 +39,11 @@ const UserDelete = ({sessionId}) => {
                     progress: undefined,
                 });
 
-                // Clear session and redirect to the homepage
-                localStorage.removeItem('userSessionId');
+                // Clear session ID from local storage
+                localStorage.removeItem('sessionId');
+                localStorage.removeItem('sessionExpiration');
+
+                
                 setTimeout(() => {
                     navigate('/');
                 }, 5000);

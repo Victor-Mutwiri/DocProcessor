@@ -3,6 +3,8 @@ import './FeaturesNav.css'
 import DarkModeToggle from '../common/DarkModeToggle';
 import Logout from '../Logout/Logout';
 import {NavLink} from 'react-router-dom';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { FaUser } from 'react-icons/fa';
 import Admin from '../../screens/Admin/Admin'
 
 const FeaturesNav = ({onLogout}) => {
@@ -22,9 +24,10 @@ const FeaturesNav = ({onLogout}) => {
             </ul>
             <div className="features-nav__right">
                 <DarkModeToggle />
-                <Logout onLogout={onLogout}/>
-                <NavLink to="/admin" activeClassName="active">
-                    Admin
+                {/* <Logout onLogout={onLogout}/> */}
+                <NavLink to="/profile" activeClassName="active" className="profile-link">
+                    <FaUser className="admin-icon" />
+                    Profile
                 </NavLink>
             </div>
         </nav>

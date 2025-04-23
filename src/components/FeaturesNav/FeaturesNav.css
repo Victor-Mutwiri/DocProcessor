@@ -31,3 +31,13 @@
     align-items: center;
     gap: 1rem;
 }
+
+.profile-link{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px 15px;
+}
