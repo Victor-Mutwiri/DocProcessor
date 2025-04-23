@@ -9,6 +9,7 @@ import UserManagement from '../../components/Admin/UsersManagement/UserManagemen
 //import { getMemoryUsage as MemoryUsage } from '../../services/api';
 import useAdminLogout from '../../components/Admin/Authentication/AdminLogout';
 import Dashboard from './Dashboard';
+import ModelChange from './ModelChange';
 
 const Admin = () => {
   const handleAdminLogout = useAdminLogout()
@@ -42,6 +43,7 @@ const Admin = () => {
           <Routes>
             <Route index element={<Dashboard/>} />
             <Route path="/users" element={<UserManagement />} />
+            <Route path="/models" element={<ModelChange />} />
             {/* <Route
               path="/system"
               element={

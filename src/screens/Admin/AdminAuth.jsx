@@ -26,12 +26,12 @@ const AdminAuth = () => {
                     >
                         Login
                     </button>
-                    <button
+                    {/* <button
                         className={`toggle-btn ${!isLoginMode ? 'active' : ''}`}
                         onClick={() => setIsLoginMode(false)}
                     >
                         Register
-                    </button>
+                    </button> */}
                 </div>
                 {isLoginMode ? <AdminLogin /> : <AdminRegister />}
             </div>

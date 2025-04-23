@@ -16,11 +16,11 @@ const Sidebar = () => {
               Users Management
             </NavLink>
           </li>
-          {/* <li>
-            <NavLink to="/admin/system" activeclassname="active">
-              System Health
+          <li>
+            <NavLink to="/admin/models" activeclassname="active">
+              Models
             </NavLink>
-          </li> */}
+          </li>
         </ul>
       </nav>
     </div>
