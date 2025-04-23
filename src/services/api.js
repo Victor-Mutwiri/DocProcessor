@@ -6,7 +6,7 @@ const getSessionId = () =>localStorage.getItem('adminSessionId')
 export const fetchUsers = async () => {
   try {
     const sessionId = getSessionId();
-    console.log('Using sessionId for API call:', sessionId);
+    /* console.log('Using sessionId for API call:', sessionId); */
     if (!sessionId) {
       throw new Error('No valid session ID found. Please log in again.');
     }
@@ -67,7 +67,7 @@ export const toggleUserStatus = async (userId) => {
 export const getSummary = async () => {
   try {
     const sessionId = getSessionId();
-    console.log('Using sessionId for summary API call:', sessionId);
+    /* console.log('Using sessionId for summary API call:', sessionId); */
     if (!sessionId) {
       throw new Error('No valid session ID found. Please log in again.');
     }
@@ -87,7 +87,7 @@ export const getSummary = async () => {
     }
 
     const data = await response.json();
-    console.log('Fetched summary:', data);
+    /* console.log('Fetched summary:', data); */
     return data;
   } catch (error) {
     console.error('Error fetching summary:', error.message);
@@ -97,6 +97,7 @@ export const getSummary = async () => {
 
 export const updateModel = async (modelName = null) => {
   const sessionId = getSessionId(); // Retrieve admin session ID
+  /* console.log('Using sessionId for models API call:', sessionId); */
   if (!sessionId) {
     throw new Error('Unauthorized: No session ID found. Please log in again.');
   }
@@ -122,10 +123,10 @@ export const updateModel = async (modelName = null) => {
 
     const data = await response.json();
     if (method === 'GET') {
-      console.log('Fetched supported models:', data);
+      /* console.log('Fetched supported models:', data); */
       return data; // Return the list of supported models and current model
     } else {
-      console.log('Model updated successfully:', data.message);
+      /* console.log('Model updated successfully:', data.message); */
       return data.message; // Return success message
     }
   } catch (error) {

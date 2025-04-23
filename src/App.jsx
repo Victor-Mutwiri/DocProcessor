@@ -23,7 +23,7 @@ function App() {
 
 
   const handleLogin = (sessionId) => {
-    console.log('Logged in with session ID:', sessionId)
+    /* console.log('Logged in with session ID:', sessionId) */
     const expirationTime = new Date().getTime() + SESSION_EXPIRATION_HOURS * 60 * 60 * 1000
     setSessionId(sessionId)
     localStorage.setItem('sessionId', sessionId)

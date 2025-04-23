@@ -50,7 +50,7 @@ const ChatSection = ({sessionId}) => {
         fetchAvailableDocuments();
     }, [sessionId]);
 
-    console.log('sessionId in ChatSection is:', sessionId)
+    /* console.log('sessionId in ChatSection is:', sessionId) */
 
     const fetchProcessingStatus = async () => {
         try {

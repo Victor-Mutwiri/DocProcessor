@@ -55,7 +55,7 @@ const FileUpload = ({sessionId}) => {
         try {
             setUploading(true)
             setProgress(0)
-            setStatus('Starting upload...')
+            setStatus('Uploading...')
     
             const response = await fetch(`${API_BASE_URL}/api/upload`, {
                 method: 'POST',
