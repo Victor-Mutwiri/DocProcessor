@@ -1,31 +1,69 @@
-.userAuth {
+/* .userAuth {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    /* background: linear-gradient(135deg, #6a11cb, #2575fc); */
+    background-image: url('https://i.pinimg.com/736x/de/8e/54/de8e54c48411c0d338243abfe79be16c.jpg');
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
     color: #fff;
     font-family: 'Arial', sans-serif;
-}
+} */
 
 .auth-containerz {
     width: 100%;
     max-width: 400px;
-    /* background: #fff;
+    background: #fff;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    color: #333; */
+    color: #333;
 }
 
 .welcome-section {
     text-align: center;
     margin-bottom: 20px;
 }
+
+.auth-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.toggle-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #f0f0f0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.toggle-btn.active {
+    background: #6a11cb;
+    color: #fff;
+}
+
+.toggle-btn:hover {
+    background: #2575fc;
+    color: #fff;
+}
+
 .auth-form {
     display: flex;
     flex-direction: column;
 }
+
+.auth-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
 .submit-btn {
     padding: 10px 20px;
     background: #6a11cb;
@@ -39,4 +77,272 @@
 
 .submit-btn:hover {
     background: #2575fc;
+}
+
+.error-message {
+    margin-top: 10px;
+    color: red;
+    text-align: center;
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+.forgot-password a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+
+.recovered-password-popup {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.recovered-password-popup p {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.copy-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.copy-btn:hover {
+    background-color: #0056b3;
+}
+
+.timer {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #dc3545;
+}
+
+
+.dashboard-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.dashboard-header h2 {
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.dashboard-header p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.dashboard-summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.summary-card {
+    flex: 1;
+    margin: 0 10px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.summary-card h3 {
+    font-size: 1.2rem;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.summary-card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.dashboard-details {
+    margin-top: 20px;
+}
+
+.dashboard-details h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.dashboard-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dashboard-details li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.dashboard-details li strong {
+    color: #007bff;
+}
+
+.loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #007bff;
+}
+
+.error {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #dc3545;
+}
+
+
+.delete-account-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.delete-account-content h2 {
+    font-size: 1.8rem;
+    color: #dc3545;
+    margin-bottom: 20px;
+}
+
+.warning-text {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.confirm-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #ffc107;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.confirm-btn:hover {
+    background-color: #e0a800;
+}
+
+.confirmation-section {
+    margin-top: 20px;
+}
+
+.confirmation-text {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.confirmation-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.cancel-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+.delete-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.delete-btn:disabled {
+    background-color: #e0a0a0;
+    cursor: not-allowed;
+}
+
+
+@media (max-width: 600px) {
+    /* .userAuth{
+        background-size:cover;
+        background-repeat:no-repeat;
+        padding: 0 1rem;
+    } */
+    .auth-toggle {
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+    .auth-containerz {
+        width: 100%;
+        max-width: 300px;
+        background: transparent;
+        /* background: #fff; */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        color: #333;
+    }
+    .welcome-section {
+        color: #fff;
+    }
 }

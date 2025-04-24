@@ -48,4 +48,10 @@
     margin-top: 0.25rem;
     font-size: 0.75rem;
     --text-primary: #111827;
-} 
+}
+
+@media (max-width:600px){
+    .dropzones{
+        display: none;
+    }
+}

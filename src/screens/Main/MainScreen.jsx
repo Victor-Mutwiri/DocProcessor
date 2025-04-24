@@ -30,17 +30,12 @@ const MainScreen = ({sessionId, onLogout}) => {
                 <h1 className="text-3xl font-bold mb-5 text-center">
                     Sheria Aide
                 </h1>
-                {/* <div style={{ display: 'flex', gap: '1rem' }}>
-                    <DarkModeToggle />
-                    <Logout onLogout={onLogout} />
-                    <a href="/contract-review" className="text-blue-500">Contracts</a>
-                </div> */} 
             </div>
             <FeaturesNav onLogout={onLogout}/>
             {/* <DocumentAnalysis /> */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', gap: '1rem' }}>
+            <div className="main-section">
                 <div className='fileManagement' style={{ display: 'flex', flexDirection: 'column', gap: '1rem', justifyContent: 'flex-start' }}>
-                    <FileList sessionId={sessionId}/>
+                    {/* <FileList sessionId={sessionId}/> */}
                     <FileUpload sessionId={sessionId} />
                 </div>
                 <ChatSection sessionId={sessionId}/>

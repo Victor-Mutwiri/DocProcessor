@@ -18,9 +18,9 @@ const ProfileHeader = ({onLogout}) => {
         <h1>User Profile</h1>
         <div className="profile-user-info">
           {/* <span>Welcome</span> */}
-          <div>
-            <FontAwesomeIcon icon={faSignOut} className="logout-icon" />
-            <button onClick={onLogout} className="logout-button">Logout</button>
+          <div className="logout">
+            
+            <button onClick={onLogout} className="logout-button"> <FontAwesomeIcon icon={faSignOut} className="logout-icon" /> Logout</button>
           </div>
           <button onClick={handleClose} className="">Close</button>
         </div>

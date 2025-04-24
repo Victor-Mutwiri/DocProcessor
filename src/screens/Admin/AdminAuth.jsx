@@ -14,11 +14,6 @@ const AdminAuth = () => {
                     <i className="fas fa-home home"></i> Home
                 </a>
             </div>
-            <div className="auth-containers">
-                <div className="welcome-section">
-                    <h2>Welcome, Admin</h2>
-                    {/* <p>Please {isLoginMode ? 'log in' : 'register'} to continue.</p> */}
-                </div>
                 <div className="auth-toggle">
                     <button
                         className={`toggle-btn ${isLoginMode ? 'active' : ''}`}
@@ -26,15 +21,14 @@ const AdminAuth = () => {
                     >
                         Login
                     </button>
-                    {/* <button
+                    <button
                         className={`toggle-btn ${!isLoginMode ? 'active' : ''}`}
                         onClick={() => setIsLoginMode(false)}
                     >
-                        Register
-                    </button> */}
+                        SignUp
+                    </button>
                 </div>
                 {isLoginMode ? <AdminLogin /> : <AdminRegister />}
-            </div>
         </div>
     );
 };

@@ -1,24 +1,9 @@
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '@clerk/clerk-react'
-import { useEffect } from 'react'
 import './Home.css'
 import Navbar from '../../components/Navbar/Navbar'
 import ProductImage from '../../assets/Sheria.png'
 import SliderComponent from '../../components/Slider/Slider'
 
 const Home = () => {
-    /* const { isSignedIn } = useAuth()
-    const navigate = useNavigate() */
-    
-    /* useEffect(() => {
-        if (isSignedIn) {
-            navigate('/main')
-        }
-    }, [isSignedIn, navigate]) */
-    
-    /* const handleSignIn = () => {
-        navigate('/sign-in')
-    } */
 
     return (
         <div className="home">
@@ -50,7 +35,7 @@ const Home = () => {
                 </section>
             </div>
             <section className="product-image">
-                <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem', alignItems: 'center' }}>
+                <div className='laptop'>
                     <img src={ProductImage} alt='Product' />
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
                         <h4 style={{fontSize:'2.5rem', color:'black'}}>Built for Professionals</h4>

@@ -140,7 +140,13 @@
 
 
 .dashboard-container {
-    max-width: 800px;
+    /* max-width: 800px; */
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* max-width: 600px; */
+    margin: 20px auto;
     margin: 0 auto;
     padding: 20px;
     background-color: #f8f9fa;
@@ -319,4 +325,63 @@
 .delete-btn:disabled {
     background-color: #e0a0a0;
     cursor: not-allowed;
+}
+
+.password-container{
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 20px auto;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+.password-change-form{
+    max-width: 600px;
+}
+
+@media (max-width: 600px) {
+    .userAuth{
+        background-size:cover;
+        background-repeat:no-repeat;
+        padding: 0 1rem;
+    }
+    .auth-toggle {
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+    .auth-container {
+        width: 100%;
+        max-width: 300px;
+        background: transparent;
+        /* background: #fff; */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        color: #333;
+    }
+    .password-container{
+        width: 100%;
+        background: transparent;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        color: #333;
+    }
+    .password-change-form{
+        width: 100%;
+        padding: 10px;
+    }
+    .welcome-section {
+        color: #fff;
+    }
+    .summary-card {
+        margin: 0 5px;
+        padding: 10px;
+    }
 }

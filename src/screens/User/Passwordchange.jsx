@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { API_BASE_URL } from '../../config/config';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './Profile.css';
+import './UserAuth.css';
 
 const PasswordChange = () => {
     const [email, setEmail] = useState('');
@@ -81,35 +81,35 @@ const PasswordChange = () => {
     };
 
     return (
-        <div className="password-change-container">
+        <div className="password-container">
             <ToastContainer />
-            <h2>Change Password</h2>
-            <form onSubmit={handleChangePassword} className="password-change-form">
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Current Password"
-                    value={currentPassword}
-                    onChange={(e) => setCurrentPassword(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="New Password"
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                    required
-                />
-                <button type="submit" className="submit-btn" disabled={isSubmitting}>
-                    {isSubmitting ? 'Changing Password...' : 'Change Password'}
-                </button>
-            </form>
+                <h2>Change Password</h2>
+                <form onSubmit={handleChangePassword} className="password-change-form">
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="password"
+                        placeholder="Current Password"
+                        value={currentPassword}
+                        onChange={(e) => setCurrentPassword(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="password"
+                        placeholder="New Password"
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        required
+                    />
+                    <button type="submit" className="submit-btn" disabled={isSubmitting}>
+                        {isSubmitting ? 'Changing Password...' : 'Change Password'}
+                    </button>
+                </form>
         </div>
     );
 };

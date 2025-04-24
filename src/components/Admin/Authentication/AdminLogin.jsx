@@ -49,7 +49,7 @@ const AdminLogin = () => {
     return (
             <div className="auth-containerz">
                 <div className="welcome-section">
-                    {/* <h2>Welcome back, Admin</h2> */}
+                    <h2>Welcome back, Admin</h2>
                     <p>Please log in to continue.</p>
                 </div>
                 <form onSubmit={handleLogin} className="auth-form">

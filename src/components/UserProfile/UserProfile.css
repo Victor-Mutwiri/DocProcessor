@@ -1,6 +1,4 @@
 .profile-header {
-    /* display: flex;
-    flex-direction: column; */
     position: sticky;
     top: 0;
     z-index: 10;
@@ -24,4 +22,12 @@
 .profile-header-content h1{
     color: #333;
     font-size: 24px;
+}
+
+
+@media (max-width:600px){
+    .logout-icon{
+        font-size: 15px;
+        color: #333;
+    }
 }

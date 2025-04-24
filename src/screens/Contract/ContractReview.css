@@ -4,8 +4,8 @@
   display: 'flex';
   flex-direction: 'column';
   max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 2rem;
@@ -55,3 +55,19 @@
     transition: background-color 0.2s ease-in-out;
   }
   
+
+@media (max-width:600px){
+  .contract-review-container{
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+  .contract-review h1{
+    font-size: 1.5rem;
+  }
+  .contract-review button{
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+  }
+}

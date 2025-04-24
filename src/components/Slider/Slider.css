@@ -31,14 +31,12 @@
     object-fit: fill;
 }
   
-@media (max-width: 640px){
-    .skills{
-        padding: 3rem 4rem;
-    }
-    .logo{
+@media (max-width: 600px){
+    .clients .logo{
         width: 100%;
     }
-    .logo i{
-        font-size: 3rem;
+    .carousel-slide img {
+        width: 100px; /* Adjust size for smaller screens */
+        height: 100px; /* Adjust size for smaller screens */
     }
 }

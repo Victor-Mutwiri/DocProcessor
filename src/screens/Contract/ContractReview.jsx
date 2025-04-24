@@ -8,22 +8,11 @@ import FeaturesNav from '../../components/FeaturesNav/FeaturesNav';
 
 const ContractReview = ({sessionId, onLogout}) => {
   const [review, setReview] = useState('');
-  const [loading, setLoading] = useState(false);
   return (
     <div className="contract-review">
       <h1 className="text-3xl font-bold mb-5 text-center">
         Contract Review
       </h1>
-      {/* <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0 2rem' }}>
-          <h1 className="text-3xl font-bold mb-5 text-center">
-              Contract Review
-          </h1>
-          <div style={{ display: 'flex', gap: '1rem' }}>
-            <button className="btn btn-primary">
-              <a href="/main">Home</a>
-            </button>
-          </div>
-      </div> */}
       <FeaturesNav onLogout={onLogout}/>
       <div className='contract-review-container'>
         <section className='contract-files'>
@@ -31,7 +20,6 @@ const ContractReview = ({sessionId, onLogout}) => {
           <ContractList sessionId={sessionId} setReview={setReview}/>
         </section>
         <section className='review-section'>
-          {/* <h3>Review comes here</h3> */}
           <ReviewResult review={review}/>
         </section>
       </div>

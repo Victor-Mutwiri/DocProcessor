@@ -2,7 +2,7 @@ import {useEffect} from 'react'
 import {Route, Routes, useNavigate} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import './Profile.css'
-import PasswordChange from './Passwordchange'
+import PasswordChange from '../User/Passwordchange'
 import ProfileSidebar from "../../components/UserProfile/ProfileSidebar"
 import ProfileHeader from "../../components/UserProfile/ProfileHeader"
 import UserDashboard from "../User/UserDashboard"
